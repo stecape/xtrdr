@@ -1,0 +1,9 @@
+per evitare che l'Arduino si resetti quando si connette alla seriale, bisogna cambiare queste righe nel file
+serialwin32.py della libreria serial di python e cancellare il file serialwin32.pyc
+
+206        if True: #Ho cambiato questo self._dsrdtr:
+207            comDCB.fDtrControl = win32.DTR_CONTROL_HANDSHAKE
+208        else:
+209            comDCB.fDtrControl = win32.DTR_CONTROL_ENABLE if self._dtr_state else win32.DTR_CONTROL_ENABLE #Ho cambiato questo win32.DTR_CONTROL_DISABLE
+210        comDCB.fOutxDsrFlow = True #Ho cambiato questo self._dsrdtr
+  

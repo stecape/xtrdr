@@ -1,0 +1,322 @@
+{
+  "set" : [
+    {
+      "VectIndex": 0,
+      "Name": "Speed 0",
+      "varName": "Speed0",
+      "classe": "Set",
+      "limits": {
+        "HMIMin": 20,
+        "HMIMax": 600
+      },
+      "setpoint": {
+        "HMIVal": 0,
+        "PIVal": 0
+      },
+      "unit": "m/min",
+      "decimals":0
+    },
+    {
+      "VectIndex": 1,
+      "Name": "Speed 1",
+      "varName": "Speed1",
+      "classe": "Set",
+      "limits": {
+        "HMIMin": 20,
+        "HMIMax": 600
+      },
+      "setpoint": {
+        "HMIVal": 0,
+        "PIVal": 0
+      },
+      "unit": "m/min",
+      "decimals":0
+    },
+    {
+      "VectIndex": 2,
+      "Name": "Speed 2",
+      "varName": "Speed2",
+      "classe": "Set",
+      "limits": {
+        "HMIMin": 20,
+        "HMIMax": 600
+      },
+      "setpoint": {
+        "HMIVal": 0,
+        "PIVal": 0
+      },
+      "unit": "m/min",
+      "decimals":0
+    },    
+    {
+      "VectIndex": 3,
+      "Name": "Speed 3",
+      "varName": "Speed3",
+      "classe": "Set",
+      "limits": {
+        "HMIMin": 20,
+        "HMIMax": 600
+      },
+      "setpoint": {
+        "HMIVal": 0,
+        "PIVal": 0
+      },
+      "unit": "m/min",
+      "decimals":0
+    },
+    {
+      "VectIndex": 4,
+      "Name": "Speed 4",
+      "varName": "Speed4",
+      "classe": "Set",
+      "limits": {
+        "HMIMin": 20,
+        "HMIMax": 600
+      },
+      "setpoint": {
+        "HMIVal": 0,
+        "PIVal": 0
+      },
+      "unit": "m/min",
+      "decimals":0
+    }
+  ],
+  "act": [
+    {
+      "VectIndex": 0,
+      "Name": "Current 0",
+      "varName": "Current0",
+      "classe": "Act",
+      "limits": {
+        "HMIMin": 0,
+        "HMIMax": 5
+      },
+      "actual": {
+        "HMIVal": 0,
+        "PIVal": 0
+      },
+      "unit": "A",
+      "decimals":2
+    },
+    {
+      "VectIndex": 1,
+      "Name": "Current 1",
+      "varName": "Current1",
+      "classe": "Act",
+      "limits": {
+        "HMIMin": 0,
+        "HMIMax": 5
+      },
+      "actual": {
+        "HMIVal": 0,
+        "PIVal": 0
+      },
+      "unit": "A",
+      "decimals":2
+    },
+    {
+      "VectIndex": 2,
+      "Name": "Current 2",
+      "varName": "Current2",
+      "classe": "Act",
+      "limits": {
+        "HMIMin": 0,
+        "HMIMax": 5
+      },
+      "actual": {
+        "HMIVal": 0,
+        "PIVal": 0
+      },
+      "unit": "A",
+      "decimals":2
+    },
+    {
+      "VectIndex": 3,
+      "Name": "Current 3",
+      "varName": "Current3",
+      "classe": "Act",
+      "limits": {
+        "HMIMin": 0,
+        "HMIMax": 5
+      },
+      "actual": {
+        "HMIVal": 0,
+        "PIVal": 0
+      },
+      "unit": "A",
+      "decimals":2
+    },
+    {
+      "VectIndex": 4,
+      "Name": "Current 4",
+      "varName": "Current4",
+      "classe": "Act",
+      "limits": {
+        "HMIMin": 0,
+        "HMIMax": 5
+      },
+      "actual": {
+        "HMIVal": 0,
+        "PIVal": 0
+      },
+      "unit": "A",
+      "decimals":2
+    }
+  ],
+  "logic": [
+    {
+      "Vect": "L",
+      "VectIndex": 0,
+      "Name": "Motor 0",
+      "varName": "Motor0",
+      "classe": "LogicSelection",
+      "labels": ["Off", "On"],
+      "cmd": 0,
+      "st": 0
+    },
+    {
+      "Vect": "L",
+      "VectIndex": 1,
+      "Name": "Motor 1",
+      "varName": "Motor1",
+      "classe": "LogicSelection",
+      "labels": ["Off", "On"],
+      "cmd": 0,
+      "st": 0
+    },
+    {
+      "Vect": "L",
+      "VectIndex": 2,
+      "Name": "Motor 2",
+      "varName": "Motor2",
+      "classe": "LogicSelection",
+      "labels": ["Off", "On"],
+      "cmd": 0,
+      "st": 0
+    },
+    {
+      "Vect": "L",
+      "VectIndex": 3,
+      "Name": "Motor 3",
+      "varName": "Motor3",
+      "classe": "LogicSelection",
+      "labels": ["Off", "On"],
+      "cmd": 0,
+      "st": 0
+    },
+    {
+      "Vect": "L",
+      "VectIndex": 4,
+      "Name": "Motor 4",
+      "varName": "Motor4",
+      "classe": "LogicSelection",
+      "labels": ["Off", "On"],
+      "cmd": 0,
+      "st": 0
+    }
+  ],
+  "button": [
+    {
+      "Vect": "B",
+      "VectIndex": 0,
+      "Name": "Jog 0",
+      "varName": "Jog0",
+      "classe": "LogicButton",
+      "labels": ["Jog"],
+      "cmd": 0,
+      "st": 0,
+      "wd": 0,
+      "wdPrev": 0
+    },
+    {
+      "Vect": "B",
+      "VectIndex": 1,
+      "Name": "Jog 1",
+      "varName": "Jog1",
+      "classe": "LogicButton",
+      "labels": ["Run","Walk"],
+      "cmd": 0,
+      "st": 0,
+      "wd": 0,
+      "wdPrev": 0
+    },
+    {
+      "Vect": "B",
+      "VectIndex": 2,
+      "Name": "Jog 2",
+      "varName": "Jog2",
+      "classe": "LogicButton",
+      "labels": ["Run"],
+      "cmd": 0,
+      "st": 0,
+      "wd": 0,
+      "wdPrev": 0
+    },
+    {
+      "Vect": "B",
+      "VectIndex": 3,
+      "Name": "Jog 3",
+      "varName": "Jog3",
+      "classe": "LogicButton",
+      "labels": ["Run"],
+      "cmd": 0,
+      "st": 0,
+      "wd": 0,
+      "wdPrev": 0
+    },
+    {
+      "Vect": "B",
+      "VectIndex": 4,
+      "Name": "Jog 4",
+      "varName": "Jog4",
+      "classe": "LogicButton",
+      "labels": ["Run"],
+      "cmd": 0,
+      "st": 0,
+      "wd": 0,
+      "wdPrev": 0
+    }
+  ],
+  "alarm": [
+    {
+      "Vect": "Al",
+      "VectIndex": 0,
+      "Name": "Alarm 0",
+      "varName": "Alarm0",
+      "classe": "Alarm",
+      "status": 0
+    },
+    {
+      "Vect": "Al",
+      "VectIndex": 1,
+      "Name": "Alarm 1",
+      "varName": "Alarm1",
+      "classe": "Alarm",
+      "status": 0
+    },
+    {
+      "Vect": "Al",
+      "VectIndex": 2,
+      "Name": "Alarm 2",
+      "varName": "Alarm2",
+      "classe": "Alarm",
+      "status": 0
+    },
+    {
+      "Vect": "Al",
+      "VectIndex": 3,
+      "Name": "Alarm 3",
+      "varName": "Alarm3",
+      "classe": "Alarm",
+      "status": 0
+    },
+    {
+      "Vect": "Al",
+      "VectIndex": 4,
+      "Name": "Alarm 4",
+      "varName": "Alarm4",
+      "classe": "Alarm",
+      "status": 0
+    }
+  ]
+}
