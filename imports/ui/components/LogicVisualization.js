@@ -52,7 +52,6 @@ export default class LogicVisualization extends Component {
   render() {
     return (
       <Container tag={this.state}>        
-        <div style={{minHeight: '80px',width: '100%'}} />
         <Grid item>
           <CSSButtonGroup
             size="large"

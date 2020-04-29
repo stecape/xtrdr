@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Container from './Container'
+import Grid from '@material-ui/core/Grid'
 import SetContent from './SetContent'
 import ActContent from './ActContent'
 
@@ -22,10 +23,18 @@ export default class SetAct extends Component {
   render() {
     return (
       <Container tag={this.state.tagS} >
-        <SetContent tag={this.state.tagS} />
-        <div style={{minHeight: '12px',width: '100%'}} />
-        <ActContent tag={this.state.tagA} />
+        <Grid container spacing={1}>
+          <Grid item xs={6}>
+            <SetContent tag={this.state.tagS} />
+          </Grid> 
+          <Grid item xs={6}> 
+            <ActContent tag={this.state.tagA} />
+          </Grid>
+        </Grid>
       </Container>
     )
   }
 }
+
+
+//<div style={{minHeight: '12px',width: '100%'}} />

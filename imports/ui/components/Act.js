@@ -19,7 +19,6 @@ export default class Act extends Component {
   render() {
     return (
       <Container {...this.props} >
-        <div style={{minHeight: '80px',width: '100%'}} />
         <ActContent {...this.props} />
       </Container>
     )

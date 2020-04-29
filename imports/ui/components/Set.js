@@ -20,7 +20,6 @@ export default class Set extends Component {
     return (
       <Container {...this.props} >
         <SetContent {...this.props} />
-        <div style={{minHeight: '80px',width: '100%'}} />
       </Container>
     )
   }

@@ -36,7 +36,7 @@ export default class Advanced extends Component {
           Advanced
         </Typography>
         <Grid container spacing={3} >
-          <Grid item xs={12} sm={3} md={2} >
+          <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
             <Grid container spacing={1} direction="column" alignItems="stretch">
               <Setpoint tag={this.state.Setpoint.Speed0}/>
               <Setpoint tag={this.state.Setpoint.Speed1}/>
@@ -50,7 +50,7 @@ export default class Advanced extends Component {
               <Actual tag={this.state.Actual.Current4}/>
             </Grid>
           </Grid>
-          <Grid item xs={12} sm={3} md={2} >
+          <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
             <Grid container spacing={1} direction="column" alignItems="stretch">
               <LogicSelection tag={this.state.Logic.Motor0}/>
               <LogicSelection tag={this.state.Logic.Motor1}/>
