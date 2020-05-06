@@ -6,7 +6,7 @@ dbAlive = False
 with open("./server/vects.json", 'r') as f:
     vects = json.load(f)
     
-#creazione connettore a database mongo, database e collezioni
+#creazione  connettore a database mongo, database e collezioni
 while dbAlive == False:
     try:
         mongoclient = pymongo.MongoClient("mongodb://127.0.0.1:3001/")
