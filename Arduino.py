@@ -91,12 +91,12 @@ if __name__ == '__main__':
                             for i in range(0, inItemsN):
                                 dec = SetCol.find_one({'VectIndex': ord(byRecList[inCursor])})['decimals']
                                 val = ord(byRecList[inCursor+1])*256+ord(byRecList[inCursor+2])
-                                SetCol.update_one(
-                                    {'VectIndex': ord(byRecList[inCursor])},
-                                    {'$set': {
-                                        'setpoint':{'PIVal': val,'HMIVal': val/(10**dec)}
-                                    }}
-                                )
+                                # SetCol.update_one(
+                                #     {'VectIndex': ord(byRecList[inCursor])},
+                                #     {'$set': {
+                                #         'setpoint':{'PIVal': val,'HMIVal': val/(10**dec)}
+                                #     }}
+                                # )
                                 inCursor+=3
                         
                         if byRecList[inCursor-2] == 'A':
