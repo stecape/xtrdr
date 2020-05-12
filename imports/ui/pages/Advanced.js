@@ -47,7 +47,7 @@ export default class Advanced extends Component {
               <Actual tag={this.state.Actual.Current1}/>
               <Actual tag={this.state.Actual.Current2}/>
               <Actual tag={this.state.Actual.Current3}/>
-              <Actual tag={this.state.Actual.Current4}/>
+              <Actual tag={this.state.Actual.CycleTime}/>
             </Grid>
           </Grid>
           <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>

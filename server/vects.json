@@ -161,6 +161,22 @@
       },
       "unit": "A",
       "decimals":2
+    },
+    {
+      "VectIndex": 5,
+      "Name": "Cycle Time",
+      "varName": "CycleTime",
+      "classe": "Act",
+      "limits": {
+        "HMIMin": 0,
+        "HMIMax": 5000
+      },
+      "actual": {
+        "HMIVal": 0,
+        "PIVal": 0
+      },
+      "unit": "ms",
+      "decimals":0
     }
   ],
   "logic": [

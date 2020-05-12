@@ -4,24 +4,13 @@ import json
 from pySerialTransfer import pySerialTransfer as txfer
 from python.DBInit import ActCol, AlarmCol, ButtonCol, LogicCol, SetCol
 
-# class Unplugged is derived from super class Exception 
-class Unplugged(Exception): 
-  
-    # Constructor or Initializer 
-    def __init__(self, value): 
-        self.value = value 
-  
-    # __str__ is to print() the value 
-    def __str__(self): 
-        return(repr(self.value)) 
-
 
 if __name__ == '__main__':
     try:    
         while True:
             try:
                 stLink = txfer.SerialTransfer('COM12', baud=250000)
-                
+                print("here")
                 stLink.open()
                 
                 #Al primo giro richiede ad Ino tutti i dati di HMI
@@ -37,7 +26,6 @@ if __name__ == '__main__':
 
                 while boConnectionOK:
                     
-                    wdConnection = int(round(time.time()))
                     ###################################################################
                     # Wait for a response and report any errors while receiving packets
                     ###################################################################
@@ -49,20 +37,14 @@ if __name__ == '__main__':
                                 print('ERROR: PAYLOAD_ERROR')
                             elif stLink.status == -3:
                                 print('ERROR: STOP_BYTE_ERROR')
-                        
-                        #Watchdog: se non aggiorni il ti
-                        if int(round(time.time())) > wdConnection+5:
-                            print('Connection lost, reconnecting in 5..')
-                            wdConnection = int(round(time.time()))
-                            boConnectionOK=False
-                            raise Unplugged("a")
+
                     ###################################################################
                     # Parse received list
                     ###################################################################
                     byRecList = stLink.rx_obj(obj_type=list,
                                             obj_byte_size=stLink.bytesRead,
                                             list_format='c')
-                    #print("Rec: ", byRecList)
+                    print("Rec: ", byRecList)
                     byFlag = ord(byRecList[0])
                     inCursor = 1
                     while inCursor < stLink.bytesRead-1:
