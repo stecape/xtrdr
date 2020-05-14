@@ -44,7 +44,7 @@ if __name__ == '__main__':
                     byRecList = stLink.rx_obj(obj_type=list,
                                             obj_byte_size=stLink.bytesRead,
                                             list_format='c')
-                    print("Rec: ", byRecList)
+                    #print("Rec: ", byRecList)
                     byFlag = ord(byRecList[0])
                     inCursor = 1
                     while inCursor < stLink.bytesRead-1:
@@ -73,12 +73,12 @@ if __name__ == '__main__':
                             for i in range(0, inItemsN):
                                 dec = SetCol.find_one({'VectIndex': ord(byRecList[inCursor])})['decimals']
                                 val = ord(byRecList[inCursor+1])*256+ord(byRecList[inCursor+2])
-                                # SetCol.update_one(
-                                #     {'VectIndex': ord(byRecList[inCursor])},
-                                #     {'$set': {
-                                #         'setpoint':{'PIVal': val,'HMIVal': val/(10**dec)}
-                                #     }}
-                                # )
+                                SetCol.update_one(
+                                    {'VectIndex': ord(byRecList[inCursor])},
+                                    {'$set': {
+                                        'setpoint':{'PIVal': val,'HMIVal': val/(10**dec)}
+                                    }}
+                                )
                                 inCursor+=3
                         
                         if byRecList[inCursor-2] == 'A':
@@ -128,7 +128,7 @@ if __name__ == '__main__':
                             boFirstRound=False
                             boRefreshInoData=True
 
-                        byList = [chr(byFlag)]
+                        byList = [byFlag & 0xFF]
                     ###################################################################
                     # Normal send operations
                     ###################################################################  
@@ -137,14 +137,14 @@ if __name__ == '__main__':
 
                     else:
 
-                        byList = [chr(0x00)]
+                        byList = [0x00]
                     
                     ###################################################################
                     # Logic
                     ################################################################### 
                     
                     
-                        byListL = ['L', chr(0x00)]
+                        byListL = [ord('L'), 0x00]
 
                         #Logics
                         #il flag di "cambiamento nei valori" viene inizializzato al valore della flag gimme everything, così se fosse true siamo già a posto nel for che c'è dopo.
@@ -156,8 +156,8 @@ if __name__ == '__main__':
                         for x in data:
                             if x['cmd']!=0:
                                 boChanged=True
-                                byListL.append(chr(x['VectIndex']))
-                                byListL.append(chr(x['cmd']))
+                                byListL.append(x['VectIndex'] & 0xFF)
+                                byListL.append(x['cmd'] & 0xFF)
                                 byCounter+=1     
 
                                 #dopo aver acquisito il comando dal database ed aggiornato la stringa, pulisco il DB
@@ -170,7 +170,7 @@ if __name__ == '__main__':
 
                         #Se qualcosa è cambiato nelle logiche allora attacco byListL
                         if boChanged:
-                            byListL[1]=chr(byCounter)
+                            byListL[1]=byCounter & 0xFF
                             byList+=byListL
                     
 
@@ -181,7 +181,7 @@ if __name__ == '__main__':
                     
                         #Buttons
                         #il flag di "cambiamento nei valori" viene inizializzato al valore della flag gimme everything, così se fosse true siamo già a posto nel for che c'è dopo.
-                        byListB = ['B', chr(0x00)]
+                        byListB = [ord('B'), 0x00]
                         boChanged = False
                         byCounter = 0
 
@@ -208,8 +208,8 @@ if __name__ == '__main__':
                                             }}
                                         )
                                         boChanged=True
-                                        byListB.append(chr(x['VectIndex']))
-                                        byListB.append(chr(0x00))
+                                        byListB.append(x['VectIndex'] & 0xff)
+                                        byListB.append(0x00)
                                         byCounter+=1     
 
                                     #se non è ancora la Nesima volta di fila che capita
@@ -223,8 +223,8 @@ if __name__ == '__main__':
                                             }}
                                         )
                                         boChanged=True
-                                        byListB.append(chr(x['VectIndex']))
-                                        byListB.append(chr(x['cmd']))
+                                        byListB.append(x['VectIndex'] & 0xFF)
+                                        byListB.append(x['cmd'] & 0xFF)
                                         byCounter+=1 
 
                                 #se il conteggio del wd è diverso dal ciclo precedente
@@ -239,16 +239,16 @@ if __name__ == '__main__':
                                     }}
                                     )
                                     boChanged=True
-                                    byListB.append(chr(x['VectIndex']))
-                                    byListB.append(chr(x['cmd']))
+                                    byListB.append(x['VectIndex'] & 0xFF)
+                                    byListB.append(x['cmd'] & 0xFF)
                                     byCounter+=1    
                             #se il comando è a zero e il giro prima era a uno
                             else:
                             #resetta tutti i parametri del wd
                                 if x['cmdPrev']==1:
                                     boChanged=True
-                                    byListB.append(chr(x['VectIndex']))
-                                    byListB.append(chr(x['cmd']))
+                                    byListB.append(x['VectIndex'] & 0xFF)
+                                    byListB.append(x['cmd'] & 0xFF)
                                     byCounter+=1    
 
                                     ButtonCol.update_one(
@@ -263,7 +263,7 @@ if __name__ == '__main__':
 
                         #Se qualcosa è cambiato nei buttons allora attacco byListB
                         if boChanged:
-                            byListB[1]=chr(byCounter)
+                            byListB[1]=byCounter & 0xFF
                             byList+=byListB
                     
 
@@ -274,7 +274,7 @@ if __name__ == '__main__':
                 
                         #Setpoints
                         #il flag di "cambiamento nei valori" viene inizializzato al valore della flag gimme everything, così se fosse true siamo già a posto nel for che c'è dopo.
-                        byListS = ['S', chr(0x00)]
+                        byListS = [ord('S'), 0x00]
 
                         #inizializzo changed a refreshInoData in modo che appena va a true (appena dopo l'handshake iniziale)
                         #trasmette tutti i set
@@ -282,60 +282,28 @@ if __name__ == '__main__':
                         byCounter=0
 
                         #i setpoint vengono prima di tutto controllati a livello di limiti e fatto in modo che i valori di inizializzazione delle variabili ci rientrino
+                        #bugia! ho spostato il controllo limiti nell'arduino
                         data = SetCol.find().sort('VectIndex')
 
                         for x in data:
                             dec = x['decimals']
                             rval = float(x['setpoint']['HMIVal'])
-                            ival = ivalPrev = int(x['setpoint']['PIVal'])
-                            imin = int(x['limits']['HMIMin']*(10**dec))
-                            imax = int(x['limits']['HMIMax']*(10**dec))
-                            rmin = float(x['limits']['HMIMin'])
-                            rmax = float(x['limits']['HMIMax'])
-                            if ival < imin:
-                                ival=imin
-                                SetCol.update_one(
-                                    {'VectIndex': x['VectIndex']},
-                                    {'$set': {'setpoint.PIVal': ival}}
-                                )
-                            elif ival>imax:
-                                ival=imax
-                                SetCol.update_one(
-                                    {'VectIndex': x['VectIndex']},
-                                    {'$set': {'setpoint.PIVal': ival}}
-                                )
-
-                            #dopodiché si controlla che il valore impostato da HMI sia nei limiti: se si, il valore viene accettato, convertito in valore intero per arduino
-                            #se no, si prende il valore di arduino, lo si converte in reale e lo si riscrive al posto di quello imputato.
-                            if rval < rmin:
-                                rval = ival/(10**dec)
-                                SetCol.update_one(
-                                    {'VectIndex': x['VectIndex']},
-                                    {'$set': {'setpoint.HMIVal': rval}}
-                                )
-                            elif rval > rmax:
-                                rval = ival/(10**dec)
-                                SetCol.update_one(
-                                    {'VectIndex': x['VectIndex']},
-                                    {'$set': {'setpoint.HMIVal': rval}}
-                                )
-                            else:
-                                ival = int(rval*(10**dec))
-                                SetCol.update_one(
-                                    {'VectIndex': x['VectIndex']},
-                                    {'$set': {'setpoint.PIVal': ival}}
-                                )
+                            ivalPrev = int(x['setpoint']['PIVal'])
+                            ival = int(rval*(10**dec))
 
                             if ival != ivalPrev or boRefreshInoData:
+                                SetCol.update_one(
+                                    {'VectIndex': x['VectIndex']},
+                                    {'$set': {'setpoint.PIVal': ival}}
+                                )
                                 boChanged=True
-                                byListS.append(chr(x['VectIndex']))
-                                byListS.append(chr(ival.to_bytes(2, byteorder='big')[0]))
-                                byListS.append(chr(ival.to_bytes(2, byteorder='big')[1]))
+                                byListS.append(x['VectIndex'] & 0xff)
+                                byListS+=([ival >> i & 0xff for i in (8,0)])
                                 byCounter+=1    
 
                         #Se qualcosa è cambiato nei setpoints allora metto la S ed avanzo col cursore, sennò rimango dove sono e chiudo il pacchetto
                         if boChanged:
-                            byListS[1]=chr(byCounter)
+                            byListS[1]=byCounter & 0xff
                             byList+=byListS
 
                         #quindi resetto boRefreshInoData per il prossimo loop
@@ -345,6 +313,7 @@ if __name__ == '__main__':
                     # Transmit all the data to send in a single packet
                     ###################################################################
 
+                    byList = "".join(map(chr, byList))
                     inListSize = stLink.tx_obj(byList)
                     stLink.send(inListSize)
                     

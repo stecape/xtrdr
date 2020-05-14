@@ -7,3 +7,15 @@ serialwin32.py della libreria serial di python e cancellare il file serialwin32.
 209            comDCB.fDtrControl = win32.DTR_CONTROL_ENABLE if self._dtr_state else win32.DTR_CONTROL_ENABLE #Ho cambiato questo win32.DTR_CONTROL_DISABLE
 210        comDCB.fOutxDsrFlow = True #Ho cambiato questo self._dsrdtr
   
+
+
+Per evitare che la libreria SerialTransfer codifichi il Payload in utf-8 ho modificato la linea 177 da
+        if type(val) == str:
+            val = val.encode()
+
+in
+        if type(val) == str:
+            val = val.encode("latin_1")
+
+si è reso necessario perchè senno' un byte di valore superiore a 128, come ad esempio 200, veniva codificato in utf-8 utilizzando due byte, il 195 e il 164
+questa cosa mi disallineava la trama e quindi non riuscivo a parsificare il valore corretto in arduino.
