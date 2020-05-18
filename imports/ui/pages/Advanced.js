@@ -59,7 +59,7 @@ export default class Advanced extends Component {
               <LogicButton tag={this.state.Button.Jog0}/>
               <LogicButton tag={this.state.Button.Jog1}/>
               <LogicButton tag={this.state.Button.Jog2}/>
-              <LogicVisualization tag={this.state.Button.Jog3}/>
+              <LogicButton tag={this.state.Button.Jog3}/>
               <LogicVisualization tag={this.state.Button.Jog4}/>
             </Grid>
           </Grid>

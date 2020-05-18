@@ -305,7 +305,10 @@
       "Name": "Alarm 0",
       "varName": "Alarm0",
       "classe": "Alarm",
-      "st": 0
+      "reaction": 3,
+      "description": "",
+      "st": 0,
+      "ts": 0
     },
     {
       "Vect": "Al",
@@ -313,7 +316,10 @@
       "Name": "Alarm 1",
       "varName": "Alarm1",
       "classe": "Alarm",
-      "st": 0
+      "reaction": 1,
+      "description": "",
+      "st": 0,
+      "ts": 0
     },
     {
       "Vect": "Al",
@@ -321,7 +327,10 @@
       "Name": "Alarm 2",
       "varName": "Alarm2",
       "classe": "Alarm",
-      "st": 0
+      "reaction": 3,
+      "description": "",
+      "st": 0,
+      "ts": 0
     },
     {
       "Vect": "Al",
@@ -329,7 +338,10 @@
       "Name": "Alarm 3",
       "varName": "Alarm3",
       "classe": "Alarm",
-      "st": 0
+      "reaction": 3,
+      "description": "",
+      "st": 0,
+      "ts": 0
     },
     {
       "Vect": "Al",
@@ -337,7 +349,22 @@
       "Name": "Alarm 4",
       "varName": "Alarm4",
       "classe": "Alarm",
-      "st": 0
+      "reaction": 3,
+      "description": "",
+      "st": 0,
+      "ts": 0
+    }
+  ],
+  "flag": [
+    {
+      "Name": "Alarms Ack",
+      "varName": "Ack",
+      "boCmd": false
+    },
+    {
+      "Name": "Recipes loading",
+      "varName": "Recp",
+      "boCmd": false
     }
   ]
 }

@@ -5,6 +5,7 @@ import { withTracker } from 'meteor/react-meteor-data'
 import { Setpoint, Actual, Logic, Button, Alarm } from '/imports/api/vects'
 
 import Home from '../pages/Home'
+import Alarms from '../pages/Alarms'
 import Advanced from '../pages/Advanced'
 
 
@@ -17,7 +18,19 @@ class Pager extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState){
+    if (nextProps.Alarm !== prevState.Alarm){
+        
+      //counting Alarms number
+      var alarmsNumber = 0;
+      Object.keys(nextProps.Alarm).map(key => {
+        if (nextProps.Alarm[key].st != 0){alarmsNumber++}}
+      )
+      
+      nextProps.returnAlarmsNumber(alarmsNumber)
+
+    }
 	  if (nextProps !== prevState) {
+      
 	    return {
 	    	Setpoint: nextProps.Setpoint,
 	    	Actual: nextProps.Actual,
@@ -42,10 +55,12 @@ class Pager extends Component {
       }, obj), {}),
       Alarm: this.state.Alarm.reduce((obj, item) => (obj[item.varName] = {...item}, obj), {})
     }
+
     return (
       <Switch >
         <Redirect from='/main.html' to='/'/>
         <Route exact path="/" render={() => <Home {...Data} />}/>
+        <Route path="/Alarms" render={() => <Alarms {...Data} />}/>
         <Route path="/Advanced" render={() => <Advanced {...Data} />}/>
       </Switch>
     )
@@ -59,6 +74,6 @@ export default withTracker((props) => {
     Actual: Actual.find({}).fetch(),
     Logic: Logic.find({}).fetch(),
     Button: Button.find({}).fetch(),
-    Alarm: Alarm.find({}).fetch()
+    Alarm: Alarm.find({}, { sort: { ts: -1 }}).fetch()
   }
 })(Pager)

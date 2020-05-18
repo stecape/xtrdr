@@ -1,8 +1,9 @@
+import datetime
 import time
 import pymongo
 import json
 from pySerialTransfer import pySerialTransfer as txfer
-from python.DBInit import ActCol, AlarmCol, ButtonCol, LogicCol, SetCol
+from python.DBInit import ActCol, AlarmCol, ButtonCol, LogicCol, SetCol, FlagCol
 
 
 if __name__ == '__main__':
@@ -95,10 +96,27 @@ if __name__ == '__main__':
                         
                         if byRecList[inCursor-2] == 'F':
                             for i in range(0, inItemsN):
-                                AlarmCol.update_one(
-                                    {'VectIndex': ord(byRecList[inCursor])},
-                                    {'$set': {'st': ord(byRecList[inCursor+1])}}
-                                )
+                                prevSt = AlarmCol.find_one(
+                                    {'VectIndex': ord(byRecList[inCursor])}
+                                )["st"]
+                                if (prevSt == 0 or prevSt == 3) and ord(byRecList[inCursor+1]) == 1:
+                                    ts=datetime.datetime.utcnow()
+                                    ts=int(time.mktime(ts.timetuple())) * 1000
+                                    AlarmCol.update_one(
+                                        {'VectIndex': ord(byRecList[inCursor])},
+                                        {'$set': {
+                                            'st': ord(byRecList[inCursor+1]),
+                                            'ts': ts
+                                        }}
+                                    )
+                                else:
+                                    AlarmCol.update_one(
+                                        {'VectIndex': ord(byRecList[inCursor])},
+                                        {'$set': {
+                                            'st': ord(byRecList[inCursor+1])
+                                        }}
+                                    )
+
                                 inCursor+=2
 
 
@@ -136,8 +154,18 @@ if __name__ == '__main__':
                     
 
                     else:
+                        Ack = FlagCol.find_one({'varName': 'Ack'})
+                        if Ack['boCmd']:
+                            byList = [0x08]
+                            FlagCol.update_one(
+                                {'varName': 'Ack'},
+                                {'$set': {
+                                    'boCmd': False,
+                                }}
+                            )
+                        else:
+                            byList = [0x00]
 
-                        byList = [0x00]
                     
                     ###################################################################
                     # Logic

@@ -5,6 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import HomeIcon from '@material-ui/icons/Home'
+import NotificationImportantIcon from '@material-ui/icons/NotificationImportant'
 import CachedIcon from '@material-ui/icons/Cached'
 
 class MenuListItems extends Component {
@@ -24,6 +25,12 @@ class MenuListItems extends Component {
             <HomeIcon />
           </ListItemIcon>
           <ListItemText primary="Home" />
+        </MenuItem>
+        <MenuItem button component={Link} to="/Alarms" selected={isSelected("/Alarms")}>
+          <ListItemIcon>
+            <NotificationImportantIcon />
+          </ListItemIcon>
+          <ListItemText primary="Alarms" />
         </MenuItem>
         <MenuItem button component={Link} to="/Advanced" selected={isSelected("/Advanced")}>
           <ListItemIcon>

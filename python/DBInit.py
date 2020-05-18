@@ -21,6 +21,7 @@ ActCol = HMIdb["Act"]
 LogicCol = HMIdb["Logic"]
 ButtonCol = HMIdb["Button"]
 AlarmCol = HMIdb["Alarm"]
+FlagCol = HMIdb["Flag"]
 
 #inizializzazione DB
 if SetCol.count_documents({})==0:
@@ -29,7 +30,9 @@ if ActCol.count_documents({})==0:
     ActCol.insert_many(vects['act'])
 if LogicCol.count_documents({})==0:
     LogicCol.insert_many(vects['logic'])
-if ButtonCol.count_documents({})==0:
-    ButtonCol.insert_many(vects['button'])
-if AlarmCol.count_documents({})==0:
-    AlarmCol.insert_many(vects['alarm'])
+ButtonCol.delete_many({})
+AlarmCol.delete_many({})
+FlagCol.delete_many({})
+ButtonCol.insert_many(vects['button'])
+AlarmCol.insert_many(vects['alarm'])
+FlagCol.insert_many(vects['flag'])

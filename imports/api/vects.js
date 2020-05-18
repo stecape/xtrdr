@@ -7,6 +7,7 @@ export const Actual = new Mongo.Collection('Act')
 export const Logic = new Mongo.Collection('Logic')
 export const Button = new Mongo.Collection('Button')
 export const Alarm = new Mongo.Collection('Alarm')
+export const Flag = new Mongo.Collection('Flag')
 
 if (Meteor.isServer) {
     Meteor.publish('setpointData', function () {
@@ -117,6 +118,15 @@ Meteor.methods({
       { varName: varName },
       { $inc: { 
         'wd': 1
+      } }
+    )
+  },
+  
+  'Alarms.ack'() {
+    Flag.update(
+      { varName: "Ack" },
+      { $set: { 
+        'boCmd': true
       } }
     )
   }

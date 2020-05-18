@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Switch, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 import MenuListItems from './MenuListItems'
@@ -14,6 +14,8 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
+import Badge from '@material-ui/core/Badge'
+import NotificationsIcon from '@material-ui/icons/Notifications'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 
 const theme = createMuiTheme({
@@ -58,7 +60,9 @@ class App extends Component {
     super(props)
     this.state = {
       drawer: false,
+      alarmsNumber: 0,
     }
+    this.returnAlarmsNumber = this.returnAlarmsNumber.bind(this)
   }
 
   toggleDrawer = (open) => () => {
@@ -67,10 +71,14 @@ class App extends Component {
     })
   }
 
+  returnAlarmsNumber = (numb) => {
+    this.setState({alarmsNumber: numb})
+  }
+
   render() {
     return (
       <MuiThemeProvider theme={theme}>
-        <AppBar position="static">
+        <AppBar position="sticky">
           <Toolbar>
             <IconButton className={this.props.classes.menuButton} color="inherit" onClick={this.toggleDrawer(true)} >
               <MenuIcon />
@@ -78,6 +86,11 @@ class App extends Component {
             <Typography variant="h6" color="inherit" className={this.props.classes.flex}>
               xtrd
             </Typography>
+            <IconButton component={Link} to="/Alarms" aria-label="show alarms" disabled={this.state.alarmsNumber==0} color="inherit">
+              <Badge badgeContent={this.state.alarmsNumber} color="secondary">
+                <NotificationsIcon />
+              </Badge>
+            </IconButton>
           </Toolbar>
         </AppBar>
         <div className={this.props.classes.paper}>
@@ -92,7 +105,7 @@ class App extends Component {
               </div>
             </Drawer>
             <div className={this.props.classes.paperContent}>
-              <Pager />
+              <Pager returnAlarmsNumber={this.returnAlarmsNumber}/>
             </div>
           </Paper>
         </div>
