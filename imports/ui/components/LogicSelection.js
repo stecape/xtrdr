@@ -17,23 +17,22 @@ export default class LogicSelection extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      Name: '',
-      varName: '',
-      labels: ['On', 'Off'],
-      cmd: 0,
-      st: 0,
-      classe: 'LogicSelection'
+      strName: '',
+      strVarName: '',
+      strLabels: ['On', 'Off'],
+      byCmd: 0,
+      bySt: 0
     }
     this.isActive = this.isActive.bind(this)
     this.logicSelection = this.logicSelection.bind(this)
   }
 
   isActive = (index) => {
-    return (this.state.st & Math.pow(2, index)) !== 0
+    return (this.state.bySt & Math.pow(2, index)) !== 0
   }
 
   logicSelection = (index) => {
-    this.props.tag.updateLogic(this.state.varName, index)
+    this.props.tag.updateLogic(this.state.strVarName, index)
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -51,7 +50,7 @@ export default class LogicSelection extends Component {
             size="large"
           >
             {
-              this.state.labels.map((item, index) =>{
+              this.state.strLabels.map((item, index) =>{
                 var active = this.isActive(index)
                 return (
                   active ? (

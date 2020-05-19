@@ -17,12 +17,11 @@ export default class LogicButton extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      Name: '',
-      varName: '',
-      labels: ["Cmd"],
-      cmd: 0,
-      st: 0,
-      classe: 'LogicButton'
+      strName: '',
+      strVarName: '',
+      strLabels: ["Cmd"],
+      byCmd: 0,
+      bySt: 0
     }
     this.isActive = this.isActive.bind(this)
     this.logicButton = this.logicButton.bind(this)
@@ -32,12 +31,12 @@ export default class LogicButton extends Component {
 
   //metodo che verifica che il bottone di indice index sia attivo
   isActive = (index) => {    
-    return (Math.pow(2,index)&this.state.st)!==0
+    return (Math.pow(2,index)&this.state.bySt)!==0
   }
 
   //metodo che chiama l'aggiornamento del wd lato server
   logicButtonWd = () => {
-    this.props.tag.wdButton(this.state.varName)
+    this.props.tag.wdButton(this.state.strVarName)
   }
 
   //metodo che gestisce il timeout: se il pulsante è attivo setta il timer, se il pulsante è disattivo distrugge il timer
@@ -51,14 +50,14 @@ export default class LogicButton extends Component {
 
   //metodo che gestisce l'aggiornamento del valore del pulsante lato server e chiama la gestione del watchdog
   logicButton = (index, val) => {
-    this.props.tag.updateButton(this.state.varName, index, val)
+    this.props.tag.updateButton(this.state.strVarName, index, val)
     this.wdTimeout(val)
   }
 
   //metodo che elimina gli event listener e distrugge il timer in caso di refresh pagina o di unmount del componente o catastrofe: chiede al server di resettare tutti i button
   logicButtonClear = () => {
     window.removeEventListener('beforeunload', this.logicButtonClear)
-    this.props.tag.clearButton(this.state.varName)
+    this.props.tag.clearButton(this.state.strVarName)
     clearInterval(this.wdTO)
   }
 
@@ -89,7 +88,7 @@ export default class LogicButton extends Component {
             size="large"
           >
             {
-              this.state.labels.map((item, index) =>{
+              this.state.strLabels.map((item, index) =>{
                 var active = this.isActive(index)
                 return (
                   active ? (

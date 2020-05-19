@@ -16,19 +16,18 @@ export default class SetContent extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      Name: '',
-      varName: '',
-      limits: {
-        HMIMin: 0,
-        HMIMax: 0
+      strVarName: '',
+      strName: '',
+      strUnit: '',
+      inDecimals: 0,
+      Limits: {
+        reMin: 0,
+        reMax: 0
       },
-      setpoint: {
-        PIVal: 0,
-        HMIVal: 0
+      Set: {
+        reHMIVal: 0,
+        inHMIVal: 0
       },
-      unit: '',
-      decimals: 0,
-      classe: 'Set',
       internalVal: 0
     }
 
@@ -46,7 +45,7 @@ export default class SetContent extends Component {
     //chiamata a funzione di set lato Python
     event.preventDefault()
     event.stopPropagation()
-    this.props.tag.updateSetpoint(this.state.varName, this.state.internalVal)
+    this.props.tag.updateSetpoint(this.state.strVarName, this.state.internalVal)
   }
 
   componentWillUnmount() {
@@ -55,7 +54,7 @@ export default class SetContent extends Component {
 
   handleFocusIn() {
     this.timeOut = setTimeout(() => { 
-      this.setState({ internalVal: this.state.setpoint.HMIVal })
+      this.setState({ internalVal: this.state.Set.reHMIVal })
       this.inputDOM.blur()
     }, 20000)    
   }
@@ -63,16 +62,15 @@ export default class SetContent extends Component {
   static getDerivedStateFromProps(props, state) {
     if (props.tag && (props.tag !== state)) {
       var obj = { 
-        Name: props.tag.Name,
-        varName: props.tag.varName,
-        limits: props.tag.limits,
-        classe: props.tag.classe,
-        unit: props.tag.unit,
-        decimals: props.tag.decimals,
-        setpoint: props.tag.setpoint
+        strName: props.tag.strName,
+        strVarName: props.tag.strVarName,
+        Limits: props.tag.Limits,
+        strUnit: props.tag.strUnit,
+        inDecimals: props.tag.inDecimals,
+        Set: props.tag.Set
       }
-      if (props.tag.setpoint.HMIVal.toString() !== state.setpoint.HMIVal.toString()){
-        obj["internalVal"] = props.tag.setpoint.HMIVal
+      if (props.tag.Set.reHMIVal.toString() !== state.Set.reHMIVal.toString()){
+        obj["internalVal"] = props.tag.Set.reHMIVal
       }
       return obj
     }
@@ -87,8 +85,8 @@ export default class SetContent extends Component {
       <Grid item>
         <form method="post" onSubmit={this.set}>
           <CSSTextField
-            id={this.state.varName}
-            name={this.state.Name}
+            id={this.state.strVarName}
+            name={this.state.strName}
             onFocus={this.handleFocusIn}
             inputRef={(inputDOM) => { this.inputDOM = inputDOM }}
             onChange={this.handleChange}
@@ -96,7 +94,7 @@ export default class SetContent extends Component {
             type="number"
             inputProps={inputProps}
             InputProps={{
-              startAdornment: <InputAdornment position="start">{this.state.unit}</InputAdornment>,
+              startAdornment: <InputAdornment position="start">{this.state.strUnit}</InputAdornment>,
             }}
             variant="filled"
           />

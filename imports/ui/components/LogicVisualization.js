@@ -29,17 +29,16 @@ export default class LogicVisualization extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      Name: '',
-      varName: '',
-      labels: ['Off', 'On'],
-      st: 0,
-      classe: 'LogicVisualization'
+      strName: '',
+      strVarName: '',
+      strLabels: ['Off', 'On'],
+      bySt: 0
     }
     this.isActive = this.isActive.bind(this)
   }
 
   isActive = (index) => {
-    return (this.state.st & Math.pow(2, index)) !== 0
+    return (this.state.bySt & Math.pow(2, index)) !== 0
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -59,7 +58,7 @@ export default class LogicVisualization extends Component {
             disableRipple={true}
           >
             {
-              this.state.labels.map((item, index) =>{
+              this.state.strLabels.map((item, index) =>{
                 var active = this.isActive(index)
                 return (
                   active ? (

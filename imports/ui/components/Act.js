@@ -9,9 +9,9 @@ export default class Act extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    if (props.tag && (props.tag.Name !== state.Name)) {
+    if (props.tag && (props.tag.Name !== state.strName)) {
       return { 
-        Name: props.tag.Name
+        Name: props.tag.strName
       }
     }
     return {}

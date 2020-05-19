@@ -9,9 +9,9 @@ export default class Set extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    if (props.tag && (props.tag.Name !== state.Name)) {
+    if (props.tag && (props.tag.strName !== state.strName)) {
       return { 
-        Name: props.tag.Name
+        strName: props.tag.strName
       }
     }
     return {}

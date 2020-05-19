@@ -26,9 +26,9 @@ export default class Container extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    if (props.tag && (props.tag.Name !== state.Name)) {
+    if (props.tag && (props.tag.strName !== state.strName)) {
       return { 
-        Name: props.tag.Name
+        strName: props.tag.strName
       }
     }
     return {}
@@ -37,7 +37,7 @@ export default class Container extends Component {
     return (
       <Grid item>
         <CSSCard>
-          <CSSTypography variant="subtitle1">{this.state.Name}</CSSTypography>
+          <CSSTypography variant="subtitle1">{this.state.strName}</CSSTypography>
           {this.props.children}
         </CSSCard>
       </Grid>

@@ -25,18 +25,18 @@ const Ack = styled(Fab)({
 })
 
 const columns = [
-  { id: 'reaction', label: ''},
-  { id: 'ts', label: 'Timestamp' },
-  { id: 'VectIndex', label: 'ID' },
-  { id: 'Name', label: 'Alarm', minWidth: 10 },
+  { id: 'byReaction', label: ''},
+  { id: 'tiTs', label: 'Timestamp' },
+  { id: 'inIndex', label: 'ID' },
+  { id: 'strName', label: 'Alarm', minWidth: 10 },
   {
-    id: 'description',
+    id: 'strDescription',
     label: 'Description',
     minWidth: 170,
     format: (value) => value.toLocaleString('en-US'),
   },
   {
-    id: 'st',
+    id: 'bySt',
     label: 'Status',
     format: (value) => value.toLocaleString('en-US'),
   }
@@ -62,11 +62,11 @@ export default class Alarms extends Component {
   getCell = (column, value, status) =>{
     switch (column.id){
 
-      case "ts":
+      case "tiTs":
         var d = new Date (value)
         var datestring = d.getDate()  + "-" + (d.getMonth()+1) + "-" + d.getFullYear() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds()
         return datestring
-      case "reaction": 
+      case "byReaction": 
         return this.getIcon(value, status)
       default:
         return column.format && typeof value === 'number' ? column.format(value) : value
@@ -137,7 +137,7 @@ export default class Alarms extends Component {
           <TableBody>
             {Object.keys(this.state.Alarm).map((key, index) => {
               var alarm = this.state.Alarm[key]
-              const status = alarm["st"];
+              const status = alarm["bySt"];
               return (
                 status != 0 ?
                   <TableRow hover role="checkbox" tabIndex={-1} key={index}>

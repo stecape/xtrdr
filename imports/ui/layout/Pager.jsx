@@ -23,7 +23,7 @@ class Pager extends Component {
       //counting Alarms number
       var alarmsNumber = 0;
       Object.keys(nextProps.Alarm).map(key => {
-        if (nextProps.Alarm[key].st != 0){alarmsNumber++}}
+        if (nextProps.Alarm[key].bySt != 0){alarmsNumber++}}
       )
       
       nextProps.returnAlarmsNumber(alarmsNumber)
@@ -44,16 +44,16 @@ class Pager extends Component {
 
   render() {
     var Data = {
-      Actual: this.state.Actual.reduce((obj, item) => (obj[item.varName] = {...item}, obj), {}),
-      Setpoint: this.state.Setpoint.reduce((obj, item) => (obj[item.varName] = {...item, updateSetpoint: (varName, val) => Meteor.call('Setpoint.update', varName, val)}, obj), {}),
-      Logic: this.state.Logic.reduce((obj, item) => (obj[item.varName] = {...item, updateLogic: (varName, val) => Meteor.call('Logic.update', varName, val)}, obj), {}),
-      Button: this.state.Button.reduce((obj, item) => (obj[item.varName] = {
+      Actual: this.state.Actual.reduce((obj, item) => (obj[item.strVarName] = {...item}, obj), {}),
+      Setpoint: this.state.Setpoint.reduce((obj, item) => (obj[item.strVarName] = {...item, updateSetpoint: (strVarName, val) => Meteor.call('Setpoint.update', strVarName, val)}, obj), {}),
+      Logic: this.state.Logic.reduce((obj, item) => (obj[item.strVarName] = {...item, updateLogic: (strVarName, val) => Meteor.call('Logic.update', strVarName, val)}, obj), {}),
+      Button: this.state.Button.reduce((obj, item) => (obj[item.strVarName] = {
         ...item,
-        updateButton: (varName, index, val) => Meteor.call('Button.update', varName, index, val),
-        clearButton: (varName) => Meteor.call('Button.clear', varName),
-        wdButton: (varName) => Meteor.call('Button.wd', varName)
+        updateButton: (strVarName, index, boVal) => Meteor.call('Button.update', strVarName, index, boVal),
+        clearButton: (strVarName) => Meteor.call('Button.clear', strVarName),
+        wdButton: (strVarName) => Meteor.call('Button.wd', strVarName)
       }, obj), {}),
-      Alarm: this.state.Alarm.reduce((obj, item) => (obj[item.varName] = {...item}, obj), {})
+      Alarm: this.state.Alarm.reduce((obj, item) => (obj[item.strVarName] = {...item}, obj), {})
     }
 
     return (

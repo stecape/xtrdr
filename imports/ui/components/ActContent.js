@@ -31,19 +31,18 @@ export default class ActContent extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      Name: '',
-      varName: '',
-      limits: {
-        HMIMin: 0,
-        HMIMax: 0
+      strVarName: '',
+      strName: '',
+      strUnit: '',
+      inDecimals: 0,
+      Limits: {
+        reMin: 0,
+        reMax: 0
       },
-      actual: {
-        PIVal: 0,
-        HMIVal: 0
+      Act: {
+        reHMIVal: 0,
+        inHMIVal: 0
       },
-      unit: '',
-      decimals: 0,
-      classe: 'Act',
       internalVal: 0
     }
   }
@@ -51,13 +50,12 @@ export default class ActContent extends Component {
   static getDerivedStateFromProps(props, state) {
     if (props.tag && (props.tag !== state)) {
       return { 
-        Name: props.tag.Name,
-        varName: props.tag.varName,
-        limits: props.tag.limits,
-        classe: props.tag.classe,
-        unit: props.tag.unit,
-        decimals: props.tag.decimals,
-        actual: props.tag.actual
+        strName: props.tag.strName,
+        strVarName: props.tag.strVarName,
+        Limits: props.tag.Limits,
+        strUnit: props.tag.strUnit,
+        inDecimals: props.tag.inDecimals,
+        Act: props.tag.Act
       }
     }
     return {}
@@ -67,13 +65,13 @@ export default class ActContent extends Component {
     return (
       <Grid item>
         <CSSTextField
-          id={this.state.varName}
-          name={this.state.Name}
-          value={this.state.actual.HMIVal}
+          id={this.state.strVarName}
+          name={this.state.strName}
+          value={this.state.Act.reHMIVal}
           type="number"
           variant="outlined"
           InputProps={{
-            startAdornment: <InputAdornment position="start">{this.state.unit}</InputAdornment>,
+            startAdornment: <InputAdornment position="start">{this.state.strUnit}</InputAdornment>,
             readOnly: true,
           }}
         />

@@ -73,58 +73,58 @@ if (Meteor.isClient) {
 
 Meteor.methods({
 
-  'Setpoint.update'(varName, val) {
-    var value = parseFloat(val)
+  'Setpoint.update'(strVarName, reHMIVal) {
+    var val = parseFloat(reHMIVal)
     Setpoint.update(
-      { varName: varName },
+      { strVarName: strVarName },
       { $set: { 
-        'setpoint.HMIVal': value
+        'Set.reHMIVal': val
       } }
     )
   },
   
-  'Logic.update'(varName, val) {
-    var value =  Math.pow(2,parseInt(val))
+  'Logic.update'(strVarName, byCmd) {
+    var value =  Math.pow(2,parseInt(byCmd))
     Logic.update(
-      { varName: varName },
+      { strVarName: strVarName },
       { $set: { 
-        'cmd': value
+        'byCmd': value
       } }
     )
   },
   
-  'Button.update'(varName, index, val) {
-    var value =  Math.pow(2,parseInt(index))*(+val)
+  'Button.update'(strVarName, index, boVal) {
+    var value =  Math.pow(2,parseInt(index))*(+boVal)
     Button.update(
-      { varName: varName },
+      { strVarName: strVarName },
       { $set: { 
-        'cmd': value
+        'byCmd': value
       } }
     )
   },
   
-  'Button.clear'(varName) {
+  'Button.clear'(strVarName) {
     Button.update(
-      { varName: varName },
+      { strVarName: strVarName },
       { $set: { 
-        'cmd': 0,
-        'wd': 0
+        'byCmd': 0,
+        'inWd': 0
       } }
     )
   },
   
-  'Button.wd'(varName) {
+  'Button.wd'(strVarName) {
     Button.update(
-      { varName: varName },
+      { strVarName: strVarName },
       { $inc: { 
-        'wd': 1
+        'inWd': 1
       } }
     )
   },
   
   'Alarms.ack'() {
     Flag.update(
-      { varName: "Ack" },
+      { strVarName: "Ack" },
       { $set: { 
         'boCmd': true
       } }
