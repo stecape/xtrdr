@@ -1,6 +1,6 @@
 {
-  "set": [
-    {
+  "set": {
+    "Speed0": {
       "inIndex": 0,
       "strVarName": "Speed0",
       "strName": "Speed 0",
@@ -20,7 +20,7 @@
       },
       "boInit": false
     },
-    {
+    "Speed1": {
       "inIndex": 1,
       "strVarName": "Speed1",
       "strName": "Speed 1",
@@ -40,7 +40,7 @@
       },
       "boInit": false
     },
-    {
+    "Speed2": {
       "inIndex": 2,
       "strVarName": "Speed2",
       "strName": "Speed 2",
@@ -60,7 +60,7 @@
       },
       "boInit": false
     },
-    {
+    "Speed3": {
       "inIndex": 3,
       "strVarName": "Speed3",
       "strName": "Speed 3",
@@ -80,7 +80,7 @@
       },
       "boInit": false
     },
-    {
+    "Speed4": {
       "inIndex": 4,
       "strVarName": "Speed4",
       "strName": "Speed 4",
@@ -100,9 +100,9 @@
       },
       "boInit": false
     }
-  ],
-  "act": [
-    {
+  },
+  "act": {
+    "Current0": {
       "inIndex": 0,
       "strVarName": "Current0",
       "strName": "Current 0",
@@ -120,7 +120,7 @@
         "inMax": 500
       }
     },
-    {
+    "Current1": {
       "inIndex": 1,
       "strVarName": "Current1",
       "strName": "Current 1",
@@ -138,7 +138,7 @@
         "inMax": 500
       }
     },
-    {
+    "Current2": {
       "inIndex": 2,
       "strVarName": "Current2",
       "strName": "Current 2",
@@ -156,7 +156,7 @@
         "inMax": 500
       }
     },
-    {
+    "Current3": {
       "inIndex": 3,
       "strVarName": "Current3",
       "strName": "Current 3",
@@ -174,7 +174,7 @@
         "inMax": 500
       }
     },
-    {
+    "Current4": {
       "inIndex": 4,
       "strVarName": "Current4",
       "strName": "Current 4",
@@ -192,11 +192,11 @@
         "inMax": 500
       }
     },
-    {
+    "CycleTime": {
       "inIndex": 5,
       "strVarName": "CycleTime",
       "strName": "Cycle Time",
-      "strUnit": "ms",
+      "strUnit": "us",
       "inDecimals": 0,
       "Act": {
         "reHMIVal": 0,
@@ -205,14 +205,14 @@
       },
       "Limits": {
         "reMin": 0,
-        "reMax": 5000,
+        "reMax": 500000,
         "inMin": 0,
-        "inMax": 5000
+        "inMax": 500000
       }
     }
-  ],
-  "logic": [
-    {
+  },
+  "logic": {
+    "Motor0": {
       "inIndex": 0,
       "strVarName": "Motor0",
       "strName": "Motor 0",
@@ -233,7 +233,7 @@
       "boQ7": false,
       "boInit": false
     },
-    {
+    "Motor1": {
       "inIndex": 1,
       "strVarName": "Motor1",
       "strName": "Motor 1",
@@ -254,7 +254,7 @@
       "boQ7": false,
       "boInit": false
     },
-    {
+    "Motor2": {
       "inIndex": 2,
       "strVarName": "Motor2",
       "strName": "Motor 2",
@@ -275,7 +275,7 @@
       "boQ7": false,
       "boInit": false
     },
-    {
+    "Motor3": {
       "inIndex": 3,
       "strVarName": "Motor3",
       "strName": "Motor 3",
@@ -296,7 +296,7 @@
       "boQ7": false,
       "boInit": false
     },
-    {
+    "Motor4": {
       "inIndex": 4,
       "strVarName": "Motor4",
       "strName": "Motor 4",
@@ -317,9 +317,9 @@
       "boQ7": false,
       "boInit": false
     }
-  ],
-  "button": [
-    {
+  },
+  "button": {
+    "Jog0": {
       "inIndex": 0,
       "strVarName": "Jog0",
       "strName": "Jog 0",
@@ -342,7 +342,7 @@
       "boQ6": false,
       "boQ7": false
     },
-    {
+    "Jog1": {
       "inIndex": 1,
       "strVarName": "Jog1",
       "strName": "Jog 1",
@@ -366,7 +366,7 @@
       "boQ6": false,
       "boQ7": false
     },
-    {
+    "Jog2": {
       "inIndex": 2,
       "strVarName": "Jog2",
       "strName": "Jog 2",
@@ -389,7 +389,7 @@
       "boQ6": false,
       "boQ7": false
     },
-    {
+    "Jog3": {
       "inIndex": 3,
       "strVarName": "Jog3",
       "strName": "Jog 3",
@@ -412,7 +412,7 @@
       "boQ6": false,
       "boQ7": false
     },
-    {
+    "Jog4": {
       "inIndex": 4,
       "strVarName": "Jog4",
       "strName": "Jog 4",
@@ -435,9 +435,9 @@
       "boQ6": false,
       "boQ7": false
     }
-  ],
-  "alarm": [
-    {
+  },
+  "alarm": {
+    "Alarm0": {
       "inIndex": 0,
       "strName": "Alarm 0",
       "strVarName": "Alarm0",
@@ -451,7 +451,7 @@
       "boAck": false,
       "tiTs": 0
     },
-    {
+    "Alarm1": {
       "inIndex": 1,
       "strName": "Alarm 1",
       "strVarName": "Alarm1",
@@ -465,7 +465,7 @@
       "boAck": false,
       "tiTs": 0
     },
-    {
+    "Alarm2": {
       "inIndex": 2,
       "strName": "Alarm 2",
       "strVarName": "Alarm2",
@@ -479,7 +479,7 @@
       "boAck": false,
       "tiTs": 0
     },
-    {
+    "Alarm3": {
       "inIndex": 3,
       "strName": "Alarm 3",
       "strVarName": "Alarm3",
@@ -493,7 +493,7 @@
       "boAck": false,
       "tiTs": 0
     },
-    {
+    "Alarm4": {
       "inIndex": 4,
       "strName": "Alarm 4",
       "strVarName": "Alarm4",
@@ -507,17 +507,17 @@
       "boAck": false,
       "tiTs": 0
     }
-  ],
-  "flag": [
-    {
+  },
+  "flag": {
+    "Ack": {
       "strVarName": "Ack",
       "strName": "Alarms Ack",
       "boCmd": false
     },
-    {
+    "Recp": {
       "strVarName": "Recp",
       "strName": "Recipes loading",
       "boCmd": false
     }
-  ]
+  }
 }

@@ -7,48 +7,48 @@ with open('./server/vects.json', 'rt') as f:
   f.close()
 
 with open('./python/Tools/Output/rvects.json', 'wt') as rvects:
-  for s in range(0, len(vectsr['set'])):
-    del vectsr['set'][s]['Set']['inVal']
-    del vectsr['set'][s]['Set']['inPrevVal']
-    del vectsr['set'][s]['Limits']['inMin']
-    del vectsr['set'][s]['Limits']['inMax']
-    del vectsr['set'][s]['boInit']
-    #print (vectsr['set'][s])
-  for a in range(0, len(vectsr['act'])):
-    del vectsr['act'][a]['Act']['inVal']
-    del vectsr['act'][a]['Limits']['inMin']
-    del vectsr['act'][a]['Limits']['inMax']
+  for key in vectsr['set'].keys():
+    del vectsr['set'][key]['Set']['inVal']
+    del vectsr['set'][key]['Set']['inPrevVal']
+    del vectsr['set'][key]['Limits']['inMin']
+    del vectsr['set'][key]['Limits']['inMax']
+    del vectsr['set'][key]['boInit']
+    #print (vectsr['set'][key])
+  for key in vectsr['act'].keys():
+    del vectsr['act'][key]['Act']['inVal']
+    del vectsr['act'][key]['Limits']['inMin']
+    del vectsr['act'][key]['Limits']['inMax']
     #print (vectsr['act'][a])
-  for l in range(0, len(vectsr['logic'])):
-    del vectsr['logic'][l]['byPrevSt']
-    del vectsr['logic'][l]['boQ0']
-    del vectsr['logic'][l]['boQ1']
-    del vectsr['logic'][l]['boQ2']
-    del vectsr['logic'][l]['boQ3']
-    del vectsr['logic'][l]['boQ4']
-    del vectsr['logic'][l]['boQ5']
-    del vectsr['logic'][l]['boQ6']
-    del vectsr['logic'][l]['boQ7']
-    del vectsr['logic'][l]['boInit']
+  for key in vectsr['logic'].keys():
+    del vectsr['logic'][key]['byPrevSt']
+    del vectsr['logic'][key]['boQ0']
+    del vectsr['logic'][key]['boQ1']
+    del vectsr['logic'][key]['boQ2']
+    del vectsr['logic'][key]['boQ3']
+    del vectsr['logic'][key]['boQ4']
+    del vectsr['logic'][key]['boQ5']
+    del vectsr['logic'][key]['boQ6']
+    del vectsr['logic'][key]['boQ7']
+    del vectsr['logic'][key]['boInit']
     #print (vectsr['logic'][l])
-  for b in range(0, len(vectsr['button'])):
-    del vectsr['button'][b]['byPrevSt']
-    del vectsr['button'][b]['boQ0']
-    del vectsr['button'][b]['boQ1']
-    del vectsr['button'][b]['boQ2']
-    del vectsr['button'][b]['boQ3']
-    del vectsr['button'][b]['boQ4']
-    del vectsr['button'][b]['boQ5']
-    del vectsr['button'][b]['boQ6']
-    del vectsr['button'][b]['boQ7']
+  for key in vectsr['button'].keys():
+    del vectsr['button'][key]['byPrevSt']
+    del vectsr['button'][key]['boQ0']
+    del vectsr['button'][key]['boQ1']
+    del vectsr['button'][key]['boQ2']
+    del vectsr['button'][key]['boQ3']
+    del vectsr['button'][key]['boQ4']
+    del vectsr['button'][key]['boQ5']
+    del vectsr['button'][key]['boQ6']
+    del vectsr['button'][key]['boQ7']
     #print (vectsr['button'][b])
-  for f in range(0, len(vectsr['alarm'])):
-    del vectsr['alarm'][f]['boTrigger']
-    del vectsr['alarm'][f]['boQ']
-    del vectsr['alarm'][f]['byPrevSt']
-    del vectsr['alarm'][f]['byLastStSent']
-    del vectsr['alarm'][f]['boAck']
-    #print (vectsr['alarm'][f])
+  for key in vectsr['alarm'].keys():
+    del vectsr['alarm'][key]['boTrigger']
+    del vectsr['alarm'][key]['boQ']
+    del vectsr['alarm'][key]['byPrevSt']
+    del vectsr['alarm'][key]['byLastStSent']
+    del vectsr['alarm'][key]['boAck']
+    #print (vectsr['alarm'][key])
 
 
   rvects.write(json.dumps(vectsr))
@@ -60,61 +60,61 @@ with open('./server/vects.json', 'rt') as f:
   vectsi = json.load(f)
   f.close()
 
-l_HMI_L= len(vectsi['logic'])
-l_HMI_B= len(vectsi['button'])
-l_HMI_S= len(vectsi['set'])
-l_HMI_A= len(vectsi['act'])
-l_Alarms= len(vectsi['alarm'])
+l_HMI_L= len(vectsi['logic'].keys())
+l_HMI_B= len(vectsi['button'].keys())
+l_HMI_S= len(vectsi['set'].keys())
+l_HMI_A= len(vectsi['act'].keys())
+l_Alarms= len(vectsi['alarm'].keys())
 
 
 lgcs=''
-for l in range(0, len(vectsi['logic'])):
-  lgcs = lgcs + "\n\tudtLogic *" + vectsi['logic'][l]['strVarName'] + " = &VectL[" + str(l) + "];"
+for key in vectsi['logic'].keys():
+  lgcs = lgcs + "\n\tudtLogic *" + vectsi['logic'][key]['strVarName'] + " = &VectL[" + str(vectsi['logic'][key]['inIndex']) + "];"
 
 
 btns=''
-for b in range(0, len(vectsi['button'])):
-  btns = btns + "\n\tudtButton *" + vectsi['button'][b]['strVarName'] + " = &VectB[" + str(b) + "];"
+for key in vectsi['button'].keys():
+  btns = btns + "\n\tudtButton *" + vectsi['button'][key]['strVarName'] + " = &VectB[" + str(vectsi['button'][key]['inIndex']) + "];"
 
 
 sets=''
-for s in range(0, len(vectsi['set'])):
-  sets = sets + "\n\tudtSet *" + vectsi['set'][s]['strVarName'] + " = &VectS[" + str(s) + "];"
+for key in vectsi['set'].keys():
+  sets = sets + "\n\tudtSet *" + vectsi['set'][key]['strVarName'] + " = &VectS[" + str(vectsi['set'][key]['inIndex']) + "];"
 
 
 acts=''
-for a in range(0, len(vectsi['act'])):
-  acts = acts + "\n\tudtAct *" + vectsi['act'][a]['strVarName'] + " = &VectA[" + str(a) + "];"
+for key in vectsi['act'].keys():
+  acts = acts + "\n\tudtAct *" + vectsi['act'][key]['strVarName'] + " = &VectA[" + str(vectsi['act'][key]['inIndex']) + "];"
 
 
 alrms=''
-for f in range(0, len(vectsi['alarm'])):
-  alrms = alrms + "\n\tudtAlarm *" + vectsi['alarm'][f]['strVarName'] + " = &VectAl[" + str(f) + "];"
+for key in vectsi['alarm'].keys():
+  alrms = alrms + "\n\tudtAlarm *" + vectsi['alarm'][key]['strVarName'] + " = &VectAl[" + str(vectsi['alarm'][key]['inIndex']) + "];"
 
 setslim=''
-for sl in range(0, len(vectsi['set'])):
-  setslim = setslim + "\n\tHMI_S->" + vectsi['set'][sl]['strVarName'] + "->inMin=" + str(vectsi['set'][sl]['Limits']['inMin']) + ";"
-  setslim = setslim + "\n\tHMI_S->" + vectsi['set'][sl]['strVarName'] + "->inMax=" + str(vectsi['set'][sl]['Limits']['inMax']) + ";"
+for key in vectsi['set'].keys():
+  setslim = setslim + "\n\tHMI_S->" + vectsi['set'][key]['strVarName'] + "->inMin=" + str(vectsi['set'][key]['Limits']['inMin']) + ";"
+  setslim = setslim + "\n\tHMI_S->" + vectsi['set'][key]['strVarName'] + "->inMax=" + str(vectsi['set'][key]['Limits']['inMax']) + ";"
 
 actslim=''
-for al in range(0, len(vectsi['act'])):
-  actslim = actslim + "\n\tHMI_A->" + vectsi['act'][al]['strVarName'] + "->inMin=" + str(vectsi['act'][al]['Limits']['inMin']) + ";"
-  actslim = actslim + "\n\tHMI_A->" + vectsi['act'][al]['strVarName'] + "->inMax=" + str(vectsi['act'][al]['Limits']['inMax']) + ";"
+for key in vectsi['act'].keys():
+  actslim = actslim + "\n\tHMI_A->" + vectsi['act'][key]['strVarName'] + "->inMin=" + str(vectsi['act'][key]['Limits']['inMin']) + ";"
+  actslim = actslim + "\n\tHMI_A->" + vectsi['act'][key]['strVarName'] + "->inMax=" + str(vectsi['act'][key]['Limits']['inMax']) + ";"
 
 alrmsreact=''
-for ar in range(0, len(vectsi['alarm'])):
+for key in vectsi['alarm'].keys():
   strReact = ""
-  if (vectsi['alarm'][ar]['byReaction']==1): strReact = "REACT_NORMAL_STOP"
-  elif (vectsi['alarm'][ar]['byReaction']==2): strReact = "REACT_FAST_STOP"
-  elif (vectsi['alarm'][ar]['byReaction']==3): strReact = "REACT_WARNING"
-  elif (vectsi['alarm'][ar]['byReaction']==4): strReact = "REACT_SLOW_SPEED"
-  elif (vectsi['alarm'][ar]['byReaction']==5): strReact = "REACT_NOTIFICATION"
+  if (vectsi['alarm'][key]['byReaction']==1): strReact = "REACT_NORMAL_STOP"
+  elif (vectsi['alarm'][key]['byReaction']==2): strReact = "REACT_FAST_STOP"
+  elif (vectsi['alarm'][key]['byReaction']==3): strReact = "REACT_WARNING"
+  elif (vectsi['alarm'][key]['byReaction']==4): strReact = "REACT_SLOW_SPEED"
+  elif (vectsi['alarm'][key]['byReaction']==5): strReact = "REACT_NOTIFICATION"
   else: strReact = "REACT_WARNING"
-  alrmsreact = alrmsreact + "\n\tAlarms->" + vectsi['alarm'][ar]['strVarName'] + "->byReaction = " + strReact + ";"
+  alrmsreact = alrmsreact + "\n\tAlarms->" + vectsi['alarm'][key]['strVarName'] + "->byReaction = " + strReact + ";"
   
 with open('./python/Tools/Output/db_HMI.h', 'wt') as HMI:
-  HMI.write('''
-#ifndef db_HMI_h
+  HMI.write(
+'''#ifndef db_HMI_h
 #define db_HMI_h
 
 #include "..\\70_udt\\_70_udt_Include.h"
@@ -214,7 +214,6 @@ void fb_HMIInit(){
   //Inizializzazione reazioni Allarmi''' + alrmsreact + '''
 }
 
-#endif
-'''
+#endif'''
 )
 

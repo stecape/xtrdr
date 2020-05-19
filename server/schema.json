@@ -14,13 +14,10 @@
 	],
 	"properties": {
 		"set": {
-			"$id": "#root/set", 
+			"$id": "#root/set/items", 
 			"title": "Set", 
-			"type": "array",
-			"default": [],
-			"items":{
-				"$id": "#root/set/items", 
-				"title": "Items", 
+			"type": "object",
+      "additionalProperties": {
 				"type": "object",
 				"required": [
 					"inIndex",
@@ -148,15 +145,12 @@
 					}
 				}
 			}
-		},
+    },
 		"act": {
-			"$id": "#root/act", 
+			"$id": "#root/act/items", 
 			"title": "Act", 
-			"type": "array",
-			"default": [],
-			"items":{
-				"$id": "#root/act/items", 
-				"title": "Items", 
+			"type": "object",
+      "additionalProperties": {
 				"type": "object",
 				"required": [
 					"inIndex",
@@ -268,19 +262,14 @@
 							}
 						}
 					}
-
 				}
 			}
-
 		},
 		"logic": {
-			"$id": "#root/logic", 
+			"$id": "#root/logic/items", 
 			"title": "Logic", 
-			"type": "array",
-			"default": [],
-			"items":{
-				"$id": "#root/logic/items", 
-				"title": "Items", 
+			"type": "object",
+      "additionalProperties": {
 				"type": "object",
 				"required": [
 					"inIndex",
@@ -411,13 +400,10 @@
 
 		},
 		"button": {
-			"$id": "#root/button", 
+			"$id": "#root/button/items", 
 			"title": "Button", 
-			"type": "array",
-			"default": [],
-			"items":{
-				"$id": "#root/button/items", 
-				"title": "Items", 
+			"type": "object",
+      "additionalProperties": {
 				"type": "object",
 				"required": [
 					"inIndex",
@@ -569,13 +555,10 @@
 
 		},
 		"alarm": {
-			"$id": "#root/alarm", 
+			"$id": "#root/alarm/items", 
 			"title": "Alarm", 
-			"type": "array",
-			"default": [],
-			"items":{
-				"$id": "#root/alarm/items", 
-				"title": "Items", 
+			"type": "object",
+      "additionalProperties": {
 				"type": "object",
 				"required": [
 					"inIndex",
@@ -672,13 +655,10 @@
 
 		},
 		"flag": {
-			"$id": "#root/flag", 
+			"$id": "#root/flag/items", 
 			"title": "Flag", 
-			"type": "array",
-			"default": [],
-			"items":{
-				"$id": "#root/flag/items", 
-				"title": "Items", 
+			"type": "object",
+      "additionalProperties": {
 				"type": "object",
 				"required": [
 					"strVarName",
