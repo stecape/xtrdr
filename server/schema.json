@@ -1,0 +1,714 @@
+{
+	"definitions": {},
+	"$schema": "http://json-schema.org/draft-07/schema#", 
+	"$id": "https://example.com/object1589836628.json", 
+	"title": "Root", 
+	"type": "object",
+	"required": [
+		"set",
+		"act",
+		"logic",
+		"button",
+		"alarm",
+		"flag"
+	],
+	"properties": {
+		"set": {
+			"$id": "#root/set", 
+			"title": "Set", 
+			"type": "array",
+			"default": [],
+			"items":{
+				"$id": "#root/set/items", 
+				"title": "Items", 
+				"type": "object",
+				"required": [
+					"inIndex",
+					"strVarName",
+					"strName",
+					"strUnit",
+					"inDecimals",
+					"Set",
+					"Limits",
+					"boInit"
+				],
+				"properties": {
+					"inIndex": {
+						"$id": "#root/set/items/inIndex", 
+						"title": "Inindex", 
+						"type": "integer",
+						"default": 0
+					},
+					"strVarName": {
+						"$id": "#root/set/items/strVarName", 
+						"title": "Strvarname", 
+						"type": "string",
+						"default": "",
+						"pattern": "^.*$"
+					},
+					"strName": {
+						"$id": "#root/set/items/strName", 
+						"title": "Strname", 
+						"type": "string",
+						"default": "",
+						"pattern": "^.*$"
+					},
+					"strUnit": {
+						"$id": "#root/set/items/strUnit", 
+						"title": "Strunit", 
+						"type": "string",
+						"default": "",
+						"pattern": "^.*$"
+					},
+					"inDecimals": {
+						"$id": "#root/set/items/inDecimals", 
+						"title": "Indecimals", 
+						"type": "integer",
+						"default": 0
+					},
+					"Set": {
+						"$id": "#root/set/items/Set", 
+						"title": "Set", 
+						"type": "object",
+						"required": [
+							"reHMIVal",
+							"inHMIVal",
+							"inVal",
+							"inPrevVal"
+						],
+						"properties": {
+							"reHMIVal": {
+								"$id": "#root/set/items/Set/reHMIVal", 
+								"title": "Rehmival", 
+								"type": "integer",
+								"default": 0
+							},
+							"inHMIVal": {
+								"$id": "#root/set/items/Set/inHMIVal", 
+								"title": "Inhmival", 
+								"type": "integer",
+								"default": 0
+							},
+							"inVal": {
+								"$id": "#root/set/items/Set/inVal", 
+								"title": "Inval", 
+								"type": "integer",
+								"default": 0
+							},
+							"inPrevVal": {
+								"$id": "#root/set/items/Set/inPrevVal", 
+								"title": "Inprevval", 
+								"type": "integer",
+								"default": 0
+							}
+						}
+					},
+					"Limits": {
+						"$id": "#root/set/items/Limits", 
+						"title": "Limits", 
+						"type": "object",
+						"required": [
+							"reMin",
+							"reMax",
+							"inMin",
+							"inMax"
+						],
+						"properties": {
+							"reMin": {
+								"$id": "#root/set/items/Limits/reMin", 
+								"title": "Remin", 
+								"type": "integer",
+								"default": 0
+							},
+							"reMax": {
+								"$id": "#root/set/items/Limits/reMax", 
+								"title": "Remax", 
+								"type": "integer",
+								"default": 0
+							},
+							"inMin": {
+								"$id": "#root/set/items/Limits/inMin", 
+								"title": "Inmin", 
+								"type": "integer",
+								"default": 0
+							},
+							"inMax": {
+								"$id": "#root/set/items/Limits/inMax", 
+								"title": "Inmax", 
+								"type": "integer",
+								"default": 0
+							}
+						}
+					},
+					"boInit": {
+						"$id": "#root/set/items/boInit", 
+						"title": "Boinit", 
+						"type": "boolean",
+						"default": false
+					}
+				}
+			}
+		},
+		"act": {
+			"$id": "#root/act", 
+			"title": "Act", 
+			"type": "array",
+			"default": [],
+			"items":{
+				"$id": "#root/act/items", 
+				"title": "Items", 
+				"type": "object",
+				"required": [
+					"inIndex",
+					"strVarName",
+					"strName",
+					"strUnit",
+					"inDecimals",
+					"Act",
+					"Limits"
+				],
+				"properties": {
+					"inIndex": {
+						"$id": "#root/act/items/inIndex", 
+						"title": "Inindex", 
+						"type": "integer",
+						"default": 0
+					},
+					"strVarName": {
+						"$id": "#root/act/items/strVarName", 
+						"title": "Strvarname", 
+						"type": "string",
+						"default": "",
+						"pattern": "^.*$"
+					},
+					"strName": {
+						"$id": "#root/act/items/strName", 
+						"title": "Strname", 
+						"type": "string",
+						"default": "",
+						"pattern": "^.*$"
+					},
+					"strUnit": {
+						"$id": "#root/act/items/strUnit", 
+						"title": "Strunit", 
+						"type": "string",
+						"default": "",
+						"pattern": "^.*$"
+					},
+					"inDecimals": {
+						"$id": "#root/act/items/inDecimals", 
+						"title": "Indecimals", 
+						"type": "integer",
+						"default": 0
+					},
+					"Act": {
+						"$id": "#root/act/items/Act", 
+						"title": "Act", 
+						"type": "object",
+						"required": [
+							"reHMIVal",
+							"inHMIVal",
+							"inVal"
+						],
+						"properties": {
+							"reHMIVal": {
+								"$id": "#root/act/items/Act/reHMIVal", 
+								"title": "Rehmival", 
+								"type": "integer",
+								"default": 0
+							},
+							"inHMIVal": {
+								"$id": "#root/act/items/Act/inHMIVal", 
+								"title": "Inhmival", 
+								"type": "integer",
+								"default": 0
+							},
+							"inVal": {
+								"$id": "#root/act/items/Act/inVal", 
+								"title": "Inval", 
+								"type": "integer",
+								"default": 0
+							}
+						}
+					},
+					"Limits": {
+						"$id": "#root/act/items/Limits", 
+						"title": "Limits", 
+						"type": "object",
+						"required": [
+							"reMin",
+							"reMax",
+							"inMin",
+							"inMax"
+						],
+						"properties": {
+							"reMin": {
+								"$id": "#root/act/items/Limits/reMin", 
+								"title": "Remin", 
+								"type": "integer",
+								"default": 0
+							},
+							"reMax": {
+								"$id": "#root/act/items/Limits/reMax", 
+								"title": "Remax", 
+								"type": "integer",
+								"default": 0
+							},
+							"inMin": {
+								"$id": "#root/act/items/Limits/inMin", 
+								"title": "Inmin", 
+								"type": "integer",
+								"default": 0
+							},
+							"inMax": {
+								"$id": "#root/act/items/Limits/inMax", 
+								"title": "Inmax", 
+								"type": "integer",
+								"default": 0
+							}
+						}
+					}
+
+				}
+			}
+
+		},
+		"logic": {
+			"$id": "#root/logic", 
+			"title": "Logic", 
+			"type": "array",
+			"default": [],
+			"items":{
+				"$id": "#root/logic/items", 
+				"title": "Items", 
+				"type": "object",
+				"required": [
+					"inIndex",
+					"strVarName",
+					"strName",
+					"strLabels",
+					"byCmd",
+					"bySt",
+					"byPrevSt",
+					"boQ0",
+					"boQ1",
+					"boQ2",
+					"boQ3",
+					"boQ4",
+					"boQ5",
+					"boQ6",
+					"boQ7",
+					"boInit"
+				],
+				"properties": {
+					"inIndex": {
+						"$id": "#root/logic/items/inIndex", 
+						"title": "Inindex", 
+						"type": "integer",
+						"default": 0
+					},
+					"strVarName": {
+						"$id": "#root/logic/items/strVarName", 
+						"title": "Strvarname", 
+						"type": "string",
+						"default": "",
+						"pattern": "^.*$"
+					},
+					"strName": {
+						"$id": "#root/logic/items/strName", 
+						"title": "Strname", 
+						"type": "string",
+						"default": "",
+						"pattern": "^.*$"
+					},
+					"strLabels": {
+						"$id": "#root/logic/items/strLabels", 
+						"title": "Strlabels", 
+						"type": "array",
+						"default": [],
+						"items":{
+							"$id": "#root/logic/items/strLabels/items", 
+							"title": "Items", 
+							"type": "string",
+							"default": "",
+							"pattern": "^.*$"
+						}
+					},
+					"byCmd": {
+						"$id": "#root/logic/items/byCmd", 
+						"title": "Bycmd", 
+						"type": "integer",
+						"default": 0
+					},
+					"bySt": {
+						"$id": "#root/logic/items/bySt", 
+						"title": "Byst", 
+						"type": "integer",
+						"default": 0
+					},
+					"byPrevSt": {
+						"$id": "#root/logic/items/byPrevSt", 
+						"title": "Byprevst", 
+						"type": "integer",
+						"default": 0
+					},
+					"boQ0": {
+						"$id": "#root/logic/items/boQ0", 
+						"title": "Boq0", 
+						"type": "boolean",
+						"default": false
+					},
+					"boQ1": {
+						"$id": "#root/logic/items/boQ1", 
+						"title": "Boq1", 
+						"type": "boolean",
+						"default": false
+					},
+					"boQ2": {
+						"$id": "#root/logic/items/boQ2", 
+						"title": "Boq2", 
+						"type": "boolean",
+						"default": false
+					},
+					"boQ3": {
+						"$id": "#root/logic/items/boQ3", 
+						"title": "Boq3", 
+						"type": "boolean",
+						"default": false
+					},
+					"boQ4": {
+						"$id": "#root/logic/items/boQ4", 
+						"title": "Boq4", 
+						"type": "boolean",
+						"default": false
+					},
+					"boQ5": {
+						"$id": "#root/logic/items/boQ5", 
+						"title": "Boq5", 
+						"type": "boolean",
+						"default": false
+					},
+					"boQ6": {
+						"$id": "#root/logic/items/boQ6", 
+						"title": "Boq6", 
+						"type": "boolean",
+						"default": false
+					},
+					"boQ7": {
+						"$id": "#root/logic/items/boQ7", 
+						"title": "Boq7", 
+						"type": "boolean",
+						"default": false
+					},
+					"boInit": {
+						"$id": "#root/logic/items/boInit", 
+						"title": "Boinit", 
+						"type": "boolean",
+						"default": false
+					}
+				}
+			}
+
+		},
+		"button": {
+			"$id": "#root/button", 
+			"title": "Button", 
+			"type": "array",
+			"default": [],
+			"items":{
+				"$id": "#root/button/items", 
+				"title": "Items", 
+				"type": "object",
+				"required": [
+					"inIndex",
+					"strVarName",
+					"strName",
+					"strLabels",
+					"byCmd",
+					"byPrevCmd",
+					"bySt",
+					"byPrevSt",
+					"inWd",
+					"inPrevWd",
+					"inWdCount",
+					"boQ0",
+					"boQ1",
+					"boQ2",
+					"boQ3",
+					"boQ4",
+					"boQ5",
+					"boQ6",
+					"boQ7"
+				],
+				"properties": {
+					"inIndex": {
+						"$id": "#root/button/items/inIndex", 
+						"title": "Inindex", 
+						"type": "integer",
+						"default": 0
+					},
+					"strVarName": {
+						"$id": "#root/button/items/strVarName", 
+						"title": "Strvarname", 
+						"type": "string",
+						"default": "",
+						"pattern": "^.*$"
+					},
+					"strName": {
+						"$id": "#root/button/items/strName", 
+						"title": "Strname", 
+						"type": "string",
+						"default": "",
+						"pattern": "^.*$"
+					},
+					"strLabels": {
+						"$id": "#root/button/items/strLabels", 
+						"title": "Strlabels", 
+						"type": "array",
+						"default": [],
+						"items":{
+							"$id": "#root/button/items/strLabels/items", 
+							"title": "Items", 
+							"type": "string",
+							"default": "",
+							"pattern": "^.*$"
+						}
+					},
+					"byCmd": {
+						"$id": "#root/button/items/byCmd", 
+						"title": "Bycmd", 
+						"type": "integer",
+						"default": 0
+					},
+					"byPrevCmd": {
+						"$id": "#root/button/items/byPrevCmd", 
+						"title": "Byprevcmd", 
+						"type": "integer",
+						"default": 0
+					},
+					"bySt": {
+						"$id": "#root/button/items/bySt", 
+						"title": "Byst", 
+						"type": "integer",
+						"default": 0
+					},
+					"byPrevSt": {
+						"$id": "#root/button/items/byPrevSt", 
+						"title": "Byprevst", 
+						"type": "integer",
+						"default": 0
+					},
+					"inWd": {
+						"$id": "#root/button/items/inWd", 
+						"title": "Inwd", 
+						"type": "integer",
+						"default": 0
+					},
+					"inPrevWd": {
+						"$id": "#root/button/items/inPrevWd", 
+						"title": "Inprevwd", 
+						"type": "integer",
+						"default": 0
+					},
+					"inWdCount": {
+						"$id": "#root/button/items/inWdCount", 
+						"title": "Inwdcount", 
+						"type": "integer",
+						"default": 0
+					},
+					"boQ0": {
+						"$id": "#root/button/items/boQ0", 
+						"title": "Boq0", 
+						"type": "boolean",
+						"default": false
+					},
+					"boQ1": {
+						"$id": "#root/button/items/boQ1", 
+						"title": "Boq1", 
+						"type": "boolean",
+						"default": false
+					},
+					"boQ2": {
+						"$id": "#root/button/items/boQ2", 
+						"title": "Boq2", 
+						"type": "boolean",
+						"default": false
+					},
+					"boQ3": {
+						"$id": "#root/button/items/boQ3", 
+						"title": "Boq3", 
+						"type": "boolean",
+						"default": false
+					},
+					"boQ4": {
+						"$id": "#root/button/items/boQ4", 
+						"title": "Boq4", 
+						"type": "boolean",
+						"default": false
+					},
+					"boQ5": {
+						"$id": "#root/button/items/boQ5", 
+						"title": "Boq5", 
+						"type": "boolean",
+						"default": false
+					},
+					"boQ6": {
+						"$id": "#root/button/items/boQ6", 
+						"title": "Boq6", 
+						"type": "boolean",
+						"default": false
+					},
+					"boQ7": {
+						"$id": "#root/button/items/boQ7", 
+						"title": "Boq7", 
+						"type": "boolean",
+						"default": false
+					}
+				}
+			}
+
+		},
+		"alarm": {
+			"$id": "#root/alarm", 
+			"title": "Alarm", 
+			"type": "array",
+			"default": [],
+			"items":{
+				"$id": "#root/alarm/items", 
+				"title": "Items", 
+				"type": "object",
+				"required": [
+					"inIndex",
+					"strName",
+					"strVarName",
+					"strDescription",
+					"byReaction",
+					"boTrigger",
+					"boQ",
+					"bySt",
+					"byPrevSt",
+					"byLastStSent",
+					"boAck",
+					"tiTs"
+				],
+				"properties": {
+					"inIndex": {
+						"$id": "#root/alarm/items/inIndex", 
+						"title": "Inindex", 
+						"type": "integer",
+						"default": 0
+					},
+					"strName": {
+						"$id": "#root/alarm/items/strName", 
+						"title": "Strname", 
+						"type": "string",
+						"default": "",
+						"pattern": "^.*$"
+					},
+					"strVarName": {
+						"$id": "#root/alarm/items/strVarName", 
+						"title": "Strvarname", 
+						"type": "string",
+						"default": "",
+						"pattern": "^.*$"
+					},
+					"strDescription": {
+						"$id": "#root/alarm/items/strDescription", 
+						"title": "Strdescription", 
+						"type": "string",
+						"default": "",
+						"pattern": "^.*$"
+					},
+					"byReaction": {
+						"$id": "#root/alarm/items/byReaction", 
+						"title": "Byreaction", 
+						"type": "integer",
+						"default": 0
+					},
+					"boTrigger": {
+						"$id": "#root/alarm/items/boTrigger", 
+						"title": "Botrigger", 
+						"type": "boolean",
+						"default": false
+					},
+					"boQ": {
+						"$id": "#root/alarm/items/boQ", 
+						"title": "Boq", 
+						"type": "boolean",
+						"default": false
+					},
+					"bySt": {
+						"$id": "#root/alarm/items/bySt", 
+						"title": "Byst", 
+						"type": "integer",
+						"default": 0
+					},
+					"byPrevSt": {
+						"$id": "#root/alarm/items/byPrevSt", 
+						"title": "Byprevst", 
+						"type": "integer",
+						"default": 0
+					},
+					"byLastStSent": {
+						"$id": "#root/alarm/items/byLastStSent", 
+						"title": "Bylaststsent", 
+						"type": "integer",
+						"default": 0
+					},
+					"boAck": {
+						"$id": "#root/alarm/items/boAck", 
+						"title": "Boack", 
+						"type": "boolean",
+						"default": false
+					},
+					"tiTs": {
+						"$id": "#root/alarm/items/tiTs", 
+						"title": "Tits", 
+						"type": "integer",
+						"default": 0
+					}
+				}
+			}
+
+		},
+		"flag": {
+			"$id": "#root/flag", 
+			"title": "Flag", 
+			"type": "array",
+			"default": [],
+			"items":{
+				"$id": "#root/flag/items", 
+				"title": "Items", 
+				"type": "object",
+				"required": [
+					"strVarName",
+					"strName",
+					"boCmd"
+				],
+				"properties": {
+					"strVarName": {
+						"$id": "#root/flag/items/strVarName", 
+						"title": "Strvarname", 
+						"type": "string",
+						"default": "",
+						"pattern": "^.*$"
+					},
+					"strName": {
+						"$id": "#root/flag/items/strName", 
+						"title": "Strname", 
+						"type": "string",
+						"default": "",
+						"pattern": "^.*$"
+					},
+					"boCmd": {
+						"$id": "#root/flag/items/boCmd", 
+						"title": "Bocmd", 
+						"type": "boolean",
+						"default": false
+					}
+				}
+			}
+
+		}
+	}
+}

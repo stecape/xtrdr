@@ -3,7 +3,7 @@ import json
 
 dbAlive = False
 
-with open("./server/vects.json", 'r') as f:
+with open("./server/rvects.json", 'r') as f:
     vects = json.load(f)
     
 #creazione  connettore a database mongo, database e collezioni

@@ -21,7 +21,7 @@ if __name__ == '__main__':
                 #inizializzo la flag di coonessione ok con l'arudino a false
                 boConnectionOK = True
                 #numero di eventi prima che il watchdog resetti il comando dei button
-                wdN = 10
+                inWdN = 10
 
                 time.sleep(2) # allow some time for the Arduino to completely reset
 
@@ -57,39 +57,39 @@ if __name__ == '__main__':
                         if byRecList[inCursor-2] == 'L':
                             for i in range(0, inItemsN):
                                 LogicCol.update_one(
-                                    {'VectIndex': ord(byRecList[inCursor])},
-                                    {'$set': {'st': ord(byRecList[inCursor+1])}}
+                                    {'inIndex': ord(byRecList[inCursor])},
+                                    {'$set': {'bySt': ord(byRecList[inCursor+1])}}
                                 )
                                 inCursor+=2
                         
                         if byRecList[inCursor-2] == 'B':
                             for i in range(0, inItemsN):
                                 ButtonCol.update_one(
-                                    {'VectIndex': ord(byRecList[inCursor])},
-                                    {'$set': {'st': ord(byRecList[inCursor+1])}}
+                                    {'inIndex': ord(byRecList[inCursor])},
+                                    {'$set': {'bySt': ord(byRecList[inCursor+1])}}
                                 )
                                 inCursor+=2
                         
                         if byRecList[inCursor-2] == 'S':
                             for i in range(0, inItemsN):
-                                dec = SetCol.find_one({'VectIndex': ord(byRecList[inCursor])})['decimals']
+                                dec = SetCol.find_one({'inIndex': ord(byRecList[inCursor])})['inDecimals']
                                 val = ord(byRecList[inCursor+1])*256+ord(byRecList[inCursor+2])
                                 SetCol.update_one(
-                                    {'VectIndex': ord(byRecList[inCursor])},
+                                    {'inIndex': ord(byRecList[inCursor])},
                                     {'$set': {
-                                        'setpoint':{'PIVal': val,'HMIVal': val/(10**dec)}
+                                        'Set':{'inHMIVal': val, 'reHMIVal': val/(10**dec)}
                                     }}
                                 )
                                 inCursor+=3
                         
                         if byRecList[inCursor-2] == 'A':
                             for i in range(0, inItemsN):
-                                dec = ActCol.find_one({'VectIndex': ord(byRecList[inCursor])})['decimals']
+                                dec = ActCol.find_one({'inIndex': ord(byRecList[inCursor])})['inDecimals']
                                 val = ord(byRecList[inCursor+1])*256+ord(byRecList[inCursor+2])
                                 ActCol.update_one(
-                                    {'VectIndex': ord(byRecList[inCursor])},
+                                    {'inIndex': ord(byRecList[inCursor])},
                                     {'$set': {
-                                        'actual':{'PIVal': val,'HMIVal': val/(10**dec)}
+                                        'Act':{'inHMIVal': val,'reHMIVal': val/(10**dec)}
                                     }}
                                 )
                                 inCursor+=3
@@ -97,23 +97,23 @@ if __name__ == '__main__':
                         if byRecList[inCursor-2] == 'F':
                             for i in range(0, inItemsN):
                                 prevSt = AlarmCol.find_one(
-                                    {'VectIndex': ord(byRecList[inCursor])}
-                                )["st"]
+                                    {'inIndex': ord(byRecList[inCursor])}
+                                )["bySt"]
                                 if (prevSt == 0 or prevSt == 3) and ord(byRecList[inCursor+1]) == 1:
                                     ts=datetime.datetime.utcnow()
                                     ts=int(time.mktime(ts.timetuple())) * 1000
                                     AlarmCol.update_one(
-                                        {'VectIndex': ord(byRecList[inCursor])},
+                                        {'inIndex': ord(byRecList[inCursor])},
                                         {'$set': {
-                                            'st': ord(byRecList[inCursor+1]),
-                                            'ts': ts
+                                            'bySt': ord(byRecList[inCursor+1]),
+                                            'tiTs': ts
                                         }}
                                     )
                                 else:
                                     AlarmCol.update_one(
-                                        {'VectIndex': ord(byRecList[inCursor])},
+                                        {'inIndex': ord(byRecList[inCursor])},
                                         {'$set': {
-                                            'st': ord(byRecList[inCursor+1])
+                                            'bySt': ord(byRecList[inCursor+1])
                                         }}
                                     )
 
@@ -154,11 +154,11 @@ if __name__ == '__main__':
                     
 
                     else:
-                        Ack = FlagCol.find_one({'varName': 'Ack'})
+                        Ack = FlagCol.find_one({'strVarName': 'Ack'})
                         if Ack['boCmd']:
                             byList = [0x08]
                             FlagCol.update_one(
-                                {'varName': 'Ack'},
+                                {'strVarName': 'Ack'},
                                 {'$set': {
                                     'boCmd': False,
                                 }}
@@ -179,20 +179,20 @@ if __name__ == '__main__':
                         boChanged=False
                         byCounter=0
 
-                        data = LogicCol.find().sort('VectIndex')
+                        data = LogicCol.find().sort('inIndex')
 
                         for x in data:
-                            if x['cmd']!=0:
+                            if x['byCmd']!=0:
                                 boChanged=True
-                                byListL.append(x['VectIndex'] & 0xFF)
-                                byListL.append(x['cmd'] & 0xFF)
+                                byListL.append(x['inIndex'] & 0xFF)
+                                byListL.append(x['byCmd'] & 0xFF)
                                 byCounter+=1     
 
                                 #dopo aver acquisito il comando dal database ed aggiornato la stringa, pulisco il DB
                                 LogicCol.update_one(
-                                    {'VectIndex': x['VectIndex']},
+                                    {'inIndex': x['inIndex']},
                                     {'$set': {
-                                    'cmd': int(0),
+                                    'byCmd': int(0),
                                     }}
                                     )
 
@@ -213,79 +213,79 @@ if __name__ == '__main__':
                         boChanged = False
                         byCounter = 0
 
-                        data = ButtonCol.find().sort('VectIndex')
+                        data = ButtonCol.find().sort('inIndex')
                         
                         for x in data:
                             #Watchdog
                             #Se il comando è attivo (quindi se il bottone è premuto)
-                            if x['cmd']!=0:
-                                #se il conteggio del wd è uguale a quello del ciclo precedente
-                                if x['wd']==x['wdPrev']:
+                            if x['byCmd']!=0:
+                                #se il conteggio del inWd è uguale a quello del ciclo precedente
+                                if x['inWd']==x['inPrevWd']:
                                     #e sta cosa è successa per N volte di fila
-                                    if x['wdCount']==wdN:
+                                    if x['inWdCount']==inWdN:
                                         #resetta il comando, che qualcosa è andato storto nel DB o nella webApp
-                                        #e resetta tutti i parametri del wd
+                                        #e resetta tutti i parametri del inWd
                                         ButtonCol.update_one(
-                                            {'VectIndex': x['VectIndex']},
+                                            {'inIndex': x['inIndex']},
                                             {'$set': {
-                                            'cmd': int(0),
-                                            'cmdPrev': int(0),
-                                            'wd': int(0),
-                                            'wdPrev': int(0),
-                                            'wdCount': 0
+                                            'byCmd': int(0),
+                                            'byPrevCmd': int(0),
+                                            'inWd': int(0),
+                                            'inPrevWd': int(0),
+                                            'inWdCount': 0
                                             }}
                                         )
                                         boChanged=True
-                                        byListB.append(x['VectIndex'] & 0xff)
+                                        byListB.append(x['inIndex'] & 0xff)
                                         byListB.append(0x00)
                                         byCounter+=1     
 
                                     #se non è ancora la Nesima volta di fila che capita
                                     else:
-                                        #lascia tutto com'è e incrementa il wdCount
+                                        #lascia tutto com'è e incrementa il inWdCount
                                         ButtonCol.update_one(
-                                            {'VectIndex': x['VectIndex']},
+                                            {'inIndex': x['inIndex']},
                                             {'$set': {
-                                            'wdCount': x['wdCount']+1,
-                                            'cmdPrev': 1
+                                            'inWdCount': x['inWdCount']+1,
+                                            'byPrevCmd': 1
                                             }}
                                         )
                                         boChanged=True
-                                        byListB.append(x['VectIndex'] & 0xFF)
-                                        byListB.append(x['cmd'] & 0xFF)
+                                        byListB.append(x['inIndex'] & 0xFF)
+                                        byListB.append(x['byCmd'] & 0xFF)
                                         byCounter+=1 
 
-                                #se il conteggio del wd è diverso dal ciclo precedente
+                                #se il conteggio del inWd è diverso dal ciclo precedente
                                 else:
-                                    #aggiorna il wdPrev e resetta il wdCount
+                                    #aggiorna il inPrevWd e resetta il inWdCount
                                     ButtonCol.update_one(
-                                    {'VectIndex': x['VectIndex']},
+                                    {'inIndex': x['inIndex']},
                                     {'$set': {
-                                        'wdPrev': x['wd'],
-                                        'wdCount': 0,
-                                        'cmdPrev': 1
+                                        'inPrevWd': x['inWd'],
+                                        'inWdCount': 0,
+                                        'byPrevCmd': 1
                                     }}
                                     )
                                     boChanged=True
-                                    byListB.append(x['VectIndex'] & 0xFF)
-                                    byListB.append(x['cmd'] & 0xFF)
+                                    byListB.append(x['inIndex'] & 0xFF)
+                                    byListB.append(x['byCmd'] & 0xFF)
                                     byCounter+=1    
                             #se il comando è a zero e il giro prima era a uno
                             else:
-                            #resetta tutti i parametri del wd
-                                if x['cmdPrev']==1:
+                            #resetta tutti i parametri del inWd
+                                if x['byPrevCmd']==1:
                                     boChanged=True
-                                    byListB.append(x['VectIndex'] & 0xFF)
-                                    byListB.append(x['cmd'] & 0xFF)
+                                    byListB.append(x['inIndex'] & 0xFF)
+                                    byListB.append(x['byCmd'] & 0xFF)
                                     byCounter+=1    
 
                                     ButtonCol.update_one(
-                                        {'VectIndex': x['VectIndex']},
+                                        {'inIndex': x['inIndex']},
                                         {'$set': {
-                                        'wd': int(0),
-                                        'wdPrev': int(0),
-                                        'wdCount': 0,
-                                        'cmdPrev': 0
+                                        'inWd': int(0),
+                                        'inPrevWd': int(0),
+                                        'inWdCount': 0,
+                                        'byPrevCmd': 0
                                         }}
                                     ) 
 
@@ -311,21 +311,21 @@ if __name__ == '__main__':
 
                         #i setpoint vengono prima di tutto controllati a livello di limiti e fatto in modo che i valori di inizializzazione delle variabili ci rientrino
                         #bugia! ho spostato il controllo limiti nell'arduino
-                        data = SetCol.find().sort('VectIndex')
+                        data = SetCol.find().sort('inIndex')
 
                         for x in data:
-                            dec = x['decimals']
-                            rval = float(x['setpoint']['HMIVal'])
-                            ivalPrev = int(x['setpoint']['PIVal'])
+                            dec = x['inDecimals']
+                            rval = float(x['Set']['reHMIVal'])
+                            ivalPrev = int(x['Set']['inHMIVal'])
                             ival = int(rval*(10**dec))
 
                             if ival != ivalPrev or boRefreshInoData:
                                 SetCol.update_one(
-                                    {'VectIndex': x['VectIndex']},
-                                    {'$set': {'setpoint.PIVal': ival}}
+                                    {'inIndex': x['inIndex']},
+                                    {'$set': {'Set.inHMIVal': ival}}
                                 )
                                 boChanged=True
-                                byListS.append(x['VectIndex'] & 0xff)
+                                byListS.append(x['inIndex'] & 0xff)
                                 byListS+=([ival >> i & 0xff for i in (8,0)])
                                 byCounter+=1    
 
