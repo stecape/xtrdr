@@ -138,11 +138,11 @@
         "inMax": 500
       }
     },
-    "Current2": {
+    "Micrometer1": {
       "inIndex": 2,
-      "strVarName": "Current2",
-      "strName": "Current 2",
-      "strUnit": "A",
+      "strVarName": "Micrometer1",
+      "strName": "Micrometer 1",
+      "strUnit": "mm",
       "inDecimals": 2,
       "Act": {
         "reHMIVal": 0,
@@ -151,9 +151,9 @@
       },
       "Limits": {
         "reMin": 0,
-        "reMax": 5,
+        "reMax": 12.7,
         "inMin": 0,
-        "inMax": 500
+        "inMax": 1270
       }
     },
     "Current3": {

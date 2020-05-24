@@ -45,7 +45,7 @@ export default class Advanced extends Component {
               <SetAct tagS={this.state.Setpoint.Speed4} tagA={this.state.Actual.Current4}/>
               <Actual tag={this.state.Actual.Current0}/>
               <Actual tag={this.state.Actual.Current1}/>
-              <Actual tag={this.state.Actual.Current2}/>
+              <Actual tag={this.state.Actual.Micrometer1}/>
               <Actual tag={this.state.Actual.Current3}/>
               <Actual tag={this.state.Actual.CycleTime}/>
             </Grid>

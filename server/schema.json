@@ -114,13 +114,13 @@
 							"reMin": {
 								"$id": "#root/set/items/Limits/reMin", 
 								"title": "Remin", 
-								"type": "integer",
+								"type": "number",
 								"default": 0
 							},
 							"reMax": {
 								"$id": "#root/set/items/Limits/reMax", 
 								"title": "Remax", 
-								"type": "integer",
+								"type": "number",
 								"default": 0
 							},
 							"inMin": {
@@ -239,13 +239,13 @@
 							"reMin": {
 								"$id": "#root/act/items/Limits/reMin", 
 								"title": "Remin", 
-								"type": "integer",
+								"type": "number",
 								"default": 0
 							},
 							"reMax": {
 								"$id": "#root/act/items/Limits/reMax", 
 								"title": "Remax", 
-								"type": "integer",
+								"type": "number",
 								"default": 0
 							},
 							"inMin": {

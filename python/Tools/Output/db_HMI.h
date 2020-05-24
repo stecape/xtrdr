@@ -77,7 +77,7 @@ udtAct VectA[l_HMI_A];
 struct db_HMI_A {
 	udtAct *Current0 = &VectA[0];
 	udtAct *Current1 = &VectA[1];
-	udtAct *Current2 = &VectA[2];
+	udtAct *Micrometer1 = &VectA[2];
 	udtAct *Current3 = &VectA[3];
 	udtAct *Current4 = &VectA[4];
 	udtAct *CycleTime = &VectA[5];
