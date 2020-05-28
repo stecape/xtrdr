@@ -50,8 +50,27 @@ with open('./python/Tools/Output/rvects.json', 'wt') as rvects:
     del vectsr['alarm'][key]['boAck']
     #print (vectsr['alarm'][key])
 
+  sets = []
+  for key in vectsr['set'].keys():
+    sets.append(vectsr['set'][key])
+  acts = []
+  for key in vectsr['act'].keys():
+    acts.append(vectsr['act'][key])
+  logics = []
+  for key in vectsr['logic'].keys():
+    logics.append(vectsr['logic'][key])
+  buttons = []
+  for key in vectsr['button'].keys():
+    buttons.append(vectsr['button'][key])
+  alarms = []
+  for key in vectsr['alarm'].keys():
+    alarms.append(vectsr['alarm'][key])
+  flags = []
+  for key in vectsr['flag'].keys():
+    flags.append(vectsr['flag'][key])
 
-  rvects.write(json.dumps(vectsr))
+  vcts={'set': sets, 'act': acts, 'logic': logics, 'button': buttons, 'alarm': alarms, 'flag': flags}
+  rvects.write(json.dumps(vcts))
   rvects.close()
 
 

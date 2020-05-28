@@ -1,6 +1,6 @@
 {
-  "set": {
-    "Speed0": {
+  "set": [
+    {
       "inIndex": 0,
       "strVarName": "Speed0",
       "strName": "Speed 0",
@@ -15,7 +15,7 @@
         "reMax": 600
       }
     },
-    "Speed1": {
+    {
       "inIndex": 1,
       "strVarName": "Speed1",
       "strName": "Speed 1",
@@ -30,7 +30,7 @@
         "reMax": 600
       }
     },
-    "Speed2": {
+    {
       "inIndex": 2,
       "strVarName": "Speed2",
       "strName": "Speed 2",
@@ -45,7 +45,7 @@
         "reMax": 600
       }
     },
-    "Speed3": {
+    {
       "inIndex": 3,
       "strVarName": "Speed3",
       "strName": "Speed 3",
@@ -60,7 +60,7 @@
         "reMax": 600
       }
     },
-    "Speed4": {
+    {
       "inIndex": 4,
       "strVarName": "Speed4",
       "strName": "Speed 4",
@@ -75,9 +75,9 @@
         "reMax": 600
       }
     }
-  },
-  "act": {
-    "Current0": {
+  ],
+  "act": [
+    {
       "inIndex": 0,
       "strVarName": "Current0",
       "strName": "Current 0",
@@ -92,7 +92,7 @@
         "reMax": 5
       }
     },
-    "Current1": {
+    {
       "inIndex": 1,
       "strVarName": "Current1",
       "strName": "Current 1",
@@ -107,7 +107,7 @@
         "reMax": 5
       }
     },
-    "Micrometer1": {
+    {
       "inIndex": 2,
       "strVarName": "Micrometer1",
       "strName": "Micrometer 1",
@@ -122,7 +122,7 @@
         "reMax": 12.7
       }
     },
-    "Current3": {
+    {
       "inIndex": 3,
       "strVarName": "Current3",
       "strName": "Current 3",
@@ -137,7 +137,7 @@
         "reMax": 5
       }
     },
-    "Current4": {
+    {
       "inIndex": 4,
       "strVarName": "Current4",
       "strName": "Current 4",
@@ -152,7 +152,7 @@
         "reMax": 5
       }
     },
-    "CycleTime": {
+    {
       "inIndex": 5,
       "strVarName": "CycleTime",
       "strName": "Cycle Time",
@@ -167,9 +167,9 @@
         "reMax": 500000
       }
     }
-  },
-  "logic": {
-    "Motor0": {
+  ],
+  "logic": [
+    {
       "inIndex": 0,
       "strVarName": "Motor0",
       "strName": "Motor 0",
@@ -180,7 +180,7 @@
       "byCmd": 0,
       "bySt": 0
     },
-    "Motor1": {
+    {
       "inIndex": 1,
       "strVarName": "Motor1",
       "strName": "Motor 1",
@@ -191,7 +191,7 @@
       "byCmd": 0,
       "bySt": 0
     },
-    "Motor2": {
+    {
       "inIndex": 2,
       "strVarName": "Motor2",
       "strName": "Motor 2",
@@ -202,7 +202,7 @@
       "byCmd": 0,
       "bySt": 0
     },
-    "Motor3": {
+    {
       "inIndex": 3,
       "strVarName": "Motor3",
       "strName": "Motor 3",
@@ -213,7 +213,7 @@
       "byCmd": 0,
       "bySt": 0
     },
-    "Motor4": {
+    {
       "inIndex": 4,
       "strVarName": "Motor4",
       "strName": "Motor 4",
@@ -224,9 +224,9 @@
       "byCmd": 0,
       "bySt": 0
     }
-  },
-  "button": {
-    "Jog0": {
+  ],
+  "button": [
+    {
       "inIndex": 0,
       "strVarName": "Jog0",
       "strName": "Jog 0",
@@ -240,7 +240,7 @@
       "inPrevWd": 0,
       "inWdCount": 0
     },
-    "Jog1": {
+    {
       "inIndex": 1,
       "strVarName": "Jog1",
       "strName": "Jog 1",
@@ -255,7 +255,7 @@
       "inPrevWd": 0,
       "inWdCount": 0
     },
-    "Jog2": {
+    {
       "inIndex": 2,
       "strVarName": "Jog2",
       "strName": "Jog 2",
@@ -269,7 +269,7 @@
       "inPrevWd": 0,
       "inWdCount": 0
     },
-    "Jog3": {
+    {
       "inIndex": 3,
       "strVarName": "Jog3",
       "strName": "Jog 3",
@@ -283,7 +283,7 @@
       "inPrevWd": 0,
       "inWdCount": 0
     },
-    "Jog4": {
+    {
       "inIndex": 4,
       "strVarName": "Jog4",
       "strName": "Jog 4",
@@ -297,9 +297,9 @@
       "inPrevWd": 0,
       "inWdCount": 0
     }
-  },
-  "alarm": {
-    "Alarm0": {
+  ],
+  "alarm": [
+    {
       "inIndex": 0,
       "strName": "Alarm 0",
       "strVarName": "Alarm0",
@@ -308,7 +308,7 @@
       "bySt": 0,
       "tiTs": 0
     },
-    "Alarm1": {
+    {
       "inIndex": 1,
       "strName": "Alarm 1",
       "strVarName": "Alarm1",
@@ -317,7 +317,7 @@
       "bySt": 0,
       "tiTs": 0
     },
-    "Alarm2": {
+    {
       "inIndex": 2,
       "strName": "Alarm 2",
       "strVarName": "Alarm2",
@@ -326,7 +326,7 @@
       "bySt": 0,
       "tiTs": 0
     },
-    "Alarm3": {
+    {
       "inIndex": 3,
       "strName": "Alarm 3",
       "strVarName": "Alarm3",
@@ -335,7 +335,7 @@
       "bySt": 0,
       "tiTs": 0
     },
-    "Alarm4": {
+    {
       "inIndex": 4,
       "strName": "Alarm 4",
       "strVarName": "Alarm4",
@@ -344,17 +344,17 @@
       "bySt": 0,
       "tiTs": 0
     }
-  },
-  "flag": {
-    "Ack": {
+  ],
+  "flag": [
+    {
       "strVarName": "Ack",
       "strName": "Alarms Ack",
       "boCmd": false
     },
-    "Recp": {
+    {
       "strVarName": "Recp",
       "strName": "Recipes loading",
       "boCmd": false
     }
-  }
+  ]
 }

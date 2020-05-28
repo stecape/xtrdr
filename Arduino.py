@@ -45,7 +45,7 @@ if __name__ == '__main__':
                     byRecList = stLink.rx_obj(obj_type=list,
                                             obj_byte_size=stLink.bytesRead,
                                             list_format='c')
-                    #print("Rec: ", byRecList)
+                    print("Rec: ", byRecList)
                     byFlag = ord(byRecList[0])
                     inCursor = 1
                     while inCursor < stLink.bytesRead-1:
@@ -86,6 +86,8 @@ if __name__ == '__main__':
                             for i in range(0, inItemsN):
                                 dec = ActCol.find_one({'inIndex': ord(byRecList[inCursor])})['inDecimals']
                                 val = ord(byRecList[inCursor+1])*256+ord(byRecList[inCursor+2])
+                                #conversione da uint16_t a int16_t
+                                val = val-((val>>15) & 0x1)*65536
                                 ActCol.update_one(
                                     {'inIndex': ord(byRecList[inCursor])},
                                     {'$set': {
